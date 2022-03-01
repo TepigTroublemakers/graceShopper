@@ -10,11 +10,8 @@ const PaymentInfo = db.define('paymentinfo', {
     },
   },
   cardNumber: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
-    validate: {
-      isCreditCard: true,
-    },
   },
   expirationMonth: {
     type: Sequelize.INTEGER,
@@ -38,8 +35,3 @@ const PaymentInfo = db.define('paymentinfo', {
 });
 
 module.exports = PaymentInfo;
-
-//User.hasMany(PaymentInfo)
-//PaymentInfo.belongsTo(User)
-//User.BelongsToMany(Product, {through: 'Cart'})
-//Product.BelongsToMany(User, {through: 'Cart'})

@@ -18,7 +18,7 @@ const AllPots = () => {
   return (
     <div>
       {pots.map((pot) => {
-        return <div>pot</div>;
+        return <div>{pot.description}</div>;
       })}
     </div>
   );

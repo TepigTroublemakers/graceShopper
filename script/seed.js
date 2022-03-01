@@ -273,11 +273,11 @@ async function seed() {
     zipcode: 11111,
   });
 
-  Customer1.addPot(Pot1);
-  Customer1.addPot(Pot7);
-  Customer1.addPot(Pot12);
-  Customer1.addPot(Pot24);
-  Customer1.addPaymentInfo(paymentinfo1);
+  // Customer1.addPot(Pot1);
+  // Customer1.addPot(Pot7);
+  // Customer1.addPot(Pot12);
+  // Customer1.addPot(Pot24);
+  // Customer1.addPaymentInfo(paymentinfo1);
   console.log(`seeded successfully`);
 }
 
