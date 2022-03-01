@@ -27,14 +27,14 @@ export const getAllPots = () => {
 const initState = [];
 
 // Reducer
-const potsReducer = (state = initState, action) => {
+const pots = (state = initState, action) => {
   switch (action.type) {
     case SET_ALL_POTS: {
-      return action.allPots;
+      return action.pots;
     }
     default:
       return state;
   }
 };
 
-export default potsReducer;
+export default pots;

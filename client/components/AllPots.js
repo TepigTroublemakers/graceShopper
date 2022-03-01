@@ -1,27 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { getAllPots } from '../store/pots';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
 const AllPots = () => {
-  const { allPots } = useSelector((state) => {
+  const { pots } = useSelector((state) => {
     return {
-      allPots: state.allPots
-    }
-  })
+      pots: state.pots,
+    };
+  });
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllPots())
-  }, [])
+    dispatch(getAllPots());
+  }, []);
 
   return (
     <div>
-      {allPots.map(pot => {
-        return pot
+      {pots.map((pot) => {
+        return <div>pot</div>;
       })}
     </div>
-  )
-}
+  );
+};
 
-export default AllPots
+export default AllPots;

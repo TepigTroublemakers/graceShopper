@@ -1,22 +1,24 @@
 const potsRouter = require('express').Router();
-const Pot = require('../db/models/Pot')
+const Pot = require('../db/models/Pot');
 
+// GET /api/pots
 potsRouter.get('/', async (req, res, next) => {
   try {
     const pots = await Pot.findAll();
-    res.json(pots)
+    res.json(pots);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
+// GET /api/pots/:potId
 potsRouter.get('/:potId', async (req, res, next) => {
   try {
     const pot = await Pot.findByPk(req.params.potId);
-    res.json(pot)
+    res.json(pot);
   } catch (err) {
-    next (err)
+    next(err);
   }
-})
+});
 
-module.exports = potsRouter
+module.exports = potsRouter;
