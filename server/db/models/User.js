@@ -14,6 +14,23 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
+  },
+  role: {
+    type: Sequelize.ENUM('customer', 'admin'),
+    defaultValue: 'customer'
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+      unique: true,
+    }
+  },
+  address: {
+    type: Sequelize.STRING,
+    defaultValue: null,
+    allowNull: true
   }
 })
 
