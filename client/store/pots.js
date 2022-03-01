@@ -12,7 +12,7 @@ const setAllPots = (pots) => {
 };
 
 // Thunk creators
-const getAllPots = () => {
+export const getAllPots = () => {
   return async (dispatch) => {
     try {
       const { data: allPots } = await axios.get('/api/pots');
