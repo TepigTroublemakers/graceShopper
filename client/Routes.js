@@ -5,6 +5,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import { me } from './store';
 import AllPots from './components/AllPots';
+import SinglePot from './components/SinglePot';
 
 /**
  * COMPONENT
@@ -21,7 +22,8 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/pots" component={AllPots} />
+            <Route exact path="/pots" component={AllPots} />
+            <Route path="/pots/:potId" component={SinglePot} />
             <Route path="/home" component={Home} />
             <Redirect to="/home" />
           </Switch>
