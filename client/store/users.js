@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const TOKEN = 'token'
 //action types
 const GET_USERS = "GET_USERS";
 
@@ -14,8 +15,20 @@ const getUsers = (users) => {
 //thunk creators
 export const getUsersFromDb = () => {
   return async function (dispatch) {
-    const {data: users} = await axios.get('/users')
+    // const {data: users} = await axios.get('/api/users')
+    // dispatch(getUsers(users))
+
+
+    const token = window.localStorage.getItem(TOKEN)
+    if(token) {
+      const {data: users} = await axios.get('/api/users', {
+        headers: {
+          authorization: token
+        }
+      })
     dispatch(getUsers(users))
+    }
+
   }
 }
 
@@ -24,7 +37,7 @@ let initialState = []
 const users = ( state = initialState, action) => {
   switch (action.type) {
     case GET_USERS:
-      return state.users
+      return action.users
     default:
       return state
   }
