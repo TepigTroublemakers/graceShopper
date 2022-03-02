@@ -7,6 +7,8 @@ import Home from './components/Home';
 import { me } from './store';
 import AllPots from './components/AllPots';
 import AllUsers from './components/AllUsers';
+import SinglePot from './components/SinglePot';
+
 
 /**
  * COMPONENT
@@ -26,7 +28,8 @@ const Routes = () => {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/pots" component={AllPots} />
+            <Route exact path="/pots" component={AllPots} />
+            <Route path="/pots/:potId" component={SinglePot} />
             <Route path="/users" component={AllUsers} />
             <Route path="/home" component={Home} />
             <Redirect to="/home" />
