@@ -1,22 +1,28 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { Component, Fragment, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+//import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import { me } from './store';
 import AllPots from './components/AllPots';
+import AllUsers from './components/AllUsers';
 import SinglePot from './components/SinglePot';
+
 
 /**
  * COMPONENT
  */
-class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData();
-  }
+const Routes = () => {
+  const dispatch = useDispatch();
 
-  render() {
-    const { isLoggedIn } = this.props;
+  const isLoggedIn = useSelector((state) => {
+    return !!state.auth.id;
+  });
+
+  useEffect(() => {
+    dispatch(me());
+  }, []);
 
     return (
       <div>
@@ -24,6 +30,7 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/pots" component={AllPots} />
             <Route path="/pots/:potId" component={SinglePot} />
+            <Route path="/users" component={AllUsers} />
             <Route path="/home" component={Home} />
             <Redirect to="/home" />
           </Switch>
@@ -36,7 +43,6 @@ class Routes extends Component {
         )}
       </div>
     );
-  }
 }
 
 /**
@@ -47,6 +53,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    //auth: state.auth,
   };
 };
 
@@ -60,4 +67,5 @@ const mapDispatch = (dispatch) => {
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes));
+// export default withRouter(connect(mapState, mapDispatch)(Routes));
+export default Routes
