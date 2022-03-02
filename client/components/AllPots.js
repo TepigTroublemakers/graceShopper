@@ -18,7 +18,13 @@ const AllPots = () => {
   return (
     <div>
       {pots.map((pot) => {
-        return <div>pot</div>;
+        return (
+          <div>
+            <img src={pot.imageUrl} style={{ width: '200px' }} />
+            <h3>{pot.description}</h3>
+            <h5>${pot.price}</h5>
+          </div>
+        );
       })}
     </div>
   );
