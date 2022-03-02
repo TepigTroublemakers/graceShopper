@@ -4,10 +4,10 @@ const db = require('./db');
 
 const User = require('./models/User');
 const Pot = require('./models/Pot');
-const PaymentInfo = require('./models/PaymentInfo');
+const Payment = require('./models/Payment');
 
-User.hasMany(PaymentInfo);
-PaymentInfo.belongsTo(User);
+User.hasMany(Payment);
+Payment.belongsTo(User);
 User.belongsToMany(Pot, { through: 'Cart' });
 Pot.belongsToMany(User, { through: 'Cart' });
 
@@ -16,6 +16,6 @@ module.exports = {
   models: {
     User,
     Pot,
-    PaymentInfo,
+    Payment,
   },
 };

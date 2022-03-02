@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const {
-  models: { PaymentInfo, User },
+  models: { Payment, User },
 } = require('../db');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
     res.send(
-      await PaymentInfo.findAll({
+      await Payment.findAll({
         include: {
           model: User,
         },
@@ -21,7 +21,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     res.send(
-      await PaymentInfo.findOne({
+      await Payment.findOne({
         include: {
           model: User,
         },
@@ -37,7 +37,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    res.status(201).send(await PaymentInfo.create(req.body));
+    res.status(201).send(await Payment.create(req.body));
   } catch (err) {
     next(err);
   }
@@ -45,7 +45,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const payInfo = await PaymentInfo.findOne({
+    const payments = await Payment.findOne({
       include: {
         model: User,
       },
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res, next) => {
         id: req.params.id,
       },
     });
-    res.send(await payInfo.update(req.body));
+    res.send(await payments.update(req.body));
   } catch (err) {
     next(err);
   }
@@ -61,9 +61,9 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    const payInfo = await PaymentInfo.findByPk(req.params.id);
-    await payInfo.destroy();
-    res.send(payInfo);
+    const payments = await Payment.findByPk(req.params.id);
+    await payments.destroy();
+    res.send(payments);
   } catch (err) {
     next(err);
   }
