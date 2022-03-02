@@ -20,8 +20,43 @@ form div {
   display: inline-block;
 }
 
-.container {
+#allPotsRender {
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.allSinglePotsRender {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 350px;
+  width: 350px;
+  text-align: center;
+}
+
+#pageNumbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.pages {
+  background-color: silver;
+  border-style: groove;
+  width: 1em;
+  text-align: center;
+  border-radius: 20%;
+}
+
+.pages:active {
+  background-color: green;
+}
+
+#currentPage {
+  text-align: center;
 }
