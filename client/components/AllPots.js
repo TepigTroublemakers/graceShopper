@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPots } from '../store/pots';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const AllPots = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +32,9 @@ const AllPots = () => {
     return (
       <div key={pot.id} className="allSinglePotsRender">
         <img src={pot.imageUrl} style={{ width: '200px' }} />
-        <h3 className="allSinglePotsDesc">{pot.description}</h3>
+        <Link to={`/pots/${pot.id}`}>
+          <h3 className="allSinglePotsDesc">{pot.description}</h3>
+        </Link>
         <h5>${pot.price}</h5>
       </div>
     );
