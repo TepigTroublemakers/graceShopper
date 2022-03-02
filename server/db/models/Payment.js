@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const PaymentInfo = db.define('paymentinfo', {
+const Payment = db.define('payment', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -34,4 +34,4 @@ const PaymentInfo = db.define('paymentinfo', {
   },
 });
 
-module.exports = PaymentInfo;
+module.exports = Payment;

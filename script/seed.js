@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Pot, PaymentInfo },
+  models: { User, Pot, Payment },
 } = require('../server/db');
 
 /**
@@ -265,7 +265,7 @@ async function seed() {
     category: 'other',
   });
 
-  const paymentinfo1 = await PaymentInfo.create({
+  const Payment1 = await Payment.create({
     name: 'Test Dummy',
     cardNumber: 1234567890000000,
     expirationMonth: 1,
@@ -273,11 +273,11 @@ async function seed() {
     zipcode: 11111,
   });
 
-  // Customer1.addPot(Pot1);
-  // Customer1.addPot(Pot7);
-  // Customer1.addPot(Pot12);
-  // Customer1.addPot(Pot24);
-  // Customer1.addPaymentInfo(paymentinfo1);
+  await Customer1.addPot(Pot1);
+  await Customer1.addPot(Pot7);
+  await Customer1.addPot(Pot12);
+  await Customer1.addPot(Pot24);
+  await Customer1.addPayment(Payment1);
   console.log(`seeded successfully`);
 }
 
