@@ -3,27 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUsersFromDb } from '../store/users';
 
 const AllUsers = () => {
-  const { users } = useSelector((state) => {
-    return {
-      users: state.users
-    }
-  })
-
   const dispatch = useDispatch();
 
+  const { users } = useSelector((state) => {
+    return {
+      users: state.users,
+    };
+  });
+
   useEffect(() => {
-    dispatch(getUsersFromDb())
-  }, [])
+    dispatch(getUsersFromDb());
+  }, []);
 
   return (
-    <div>{
-      users.map((user) => {
-        return (
-          <div>{user.username}</div>
-        )
-      })
-    }</div>
-  )
-}
+    <div>
+      {users.map((user) => {
+        return <div>{user.username}</div>;
+      })}
+    </div>
+  );
+};
 
-export default AllUsers
+export default AllUsers;
