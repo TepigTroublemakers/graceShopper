@@ -53,7 +53,7 @@ async function seed() {
     description: 'Welcome to PotStop!',
     imageUrl: 'https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg',
     quantity: 1,
-    price: 1000000000000,
+    price: 10,
     category: 'other',
   });
 
@@ -398,7 +398,7 @@ async function seed() {
 
   const Pot44 = await Pot.create({
     description: 'Colorful owl on nest looking up',
-    imageUrl: 'https://i.gyazo.com/48e91eaa8ff2c465462d2542b5ddfba2.jpg',
+    imageUrl: 'https://i.gyazo.com/6485d089a56ab6f423f89ed3c7feb95e.jpg',
     quantity: 7,
     price: 26.99,
     category: 'owls',
@@ -668,7 +668,85 @@ async function seed() {
     category: 'reptiles',
   });
 
+  const Pot78 = await Pot.create({
+    description: 'Green left foot boot',
+    imageUrl: 'https://i.gyazo.com/7f473b1b1ddd463a5094ae666c0e3fad.jpg',
+    quantity: 9,
+    price: 28.99,
+    category: 'wacky',
+  });
 
+  const Pot79 = await Pot.create({
+    description: 'Light green interested owl',
+    imageUrl: 'https://i.gyazo.com/21e62bd863f54a8601c9d9de2a51b525.jpg',
+    quantity: 15,
+    price: 17.99,
+    category: 'owls',
+  });
+
+  const Pot80 = await Pot.create({
+    description: 'Plump white friendly owl',
+    imageUrl: 'https://i.gyazo.com/c166e790dbf2ed47ae8c4248b1d5a47b.jpg',
+    quantity: 11,
+    price: 18.99,
+    category: 'owls',
+  });
+
+  const Pot81 = await Pot.create({
+    description: 'Large shiny off white pot',
+    imageUrl: 'https://i.gyazo.com/a3c342726d9c4c764633f98a6b8e68c6.jpg',
+    quantity: 5,
+    price: 33.99,
+    category: 'other',
+  });
+
+  const Pot82 = await Pot.create({
+    description: 'Two owls and a small pot',
+    imageUrl: 'https://i.gyazo.com/e3eac42ac015dfdbe1656a912911e705.jpg',
+    quantity: 7,
+    price: 24.99,
+    category: 'owls',
+  });
+
+  const Pot83 = await Pot.create({
+    description: 'Small owl with her own smaller pot',
+    imageUrl: 'https://i.gyazo.com/5bf2d4e433947fc25d65de435313cfb7.jpg',
+    quantity: 7,
+    price: 20.99,
+    category: 'owls',
+  });
+
+  const Pot84 = await Pot.create({
+    description: 'Large glass clear pot',
+    imageUrl: 'https://i.gyazo.com/0001b609dcb58c4d44c88e9c3391dd54.jpg',
+    quantity: 10,
+    price: 26.99,
+    category: 'other',
+  });
+
+  const Pot85 = await Pot.create({
+    description: 'Medium white shiny pot',
+    imageUrl: 'https://i.gyazo.com/4643d5e3f80eb30a346730038c4a0326.jpg',
+    quantity: 11,
+    price: 28.99,
+    category: 'other',
+  });
+
+  const Pot86 = await Pot.create({
+    description: 'Wide but shallow pot',
+    imageUrl: 'https://i.gyazo.com/8ed339ea05210469ae8f76532424363d.jpg',
+    quantity: 8,
+    price: 21.99,
+    category: 'other',
+  });
+
+  const Pot87 = await Pot.create({
+    description: 'Fall special rectangular pot',
+    imageUrl: 'https://i.gyazo.com/b7b0041dd1083818c4853a425e6db850.jpg',
+    quantity: 7,
+    price: 18.99,
+    category: 'other',
+  });
 
   // rob added above ^^
 
