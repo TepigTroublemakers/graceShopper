@@ -7,7 +7,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector((state) => {
-    return state.auth.id;
+    return !!state.auth.id;
   });
 
   const role = useSelector((state) => {
@@ -23,8 +23,8 @@ const Navbar = () => {
             {role === 'admin' ? (
               <div>
                 <Link to="/home">Home</Link>
-                <Link to="/users">Users</Link>
                 <Link to="/pots">Pots</Link>
+                <Link to="/users">Users</Link>
                 <Link to="/cart">Cart</Link>
                 <div id="logout">
                   <a href="#" onClick={() => dispatch(logout())}>
@@ -47,6 +47,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div>
+            <Link to="/home">Home</Link>
             <Link to="/pots">Pots</Link>
             <Link to="/cart">Cart</Link>
             <div id="loginSignup">

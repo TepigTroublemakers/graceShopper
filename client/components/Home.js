@@ -5,9 +5,29 @@ const Home = () => {
   const { username } = useSelector((state) => {
     return state.auth;
   });
+
+  const isLoggedIn = useSelector((state) => {
+    return !!state.auth.id;
+  });
+
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      {isLoggedIn ? (
+        <div>
+          <h3>Welcome, {username}</h3>
+          <img
+            src="https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg"
+            style={{ width: '500px' }}
+          />
+        </div>
+      ) : (
+        <div>
+          <img
+            src="https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg"
+            style={{ width: '500px' }}
+          />
+        </div>
+      )}
     </div>
   );
 };
