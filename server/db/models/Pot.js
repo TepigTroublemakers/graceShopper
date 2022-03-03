@@ -46,4 +46,4 @@ const Pot = db.define('pot', {
   },
 });
 
-module.exports = Pot
+module.exports = Pot;
