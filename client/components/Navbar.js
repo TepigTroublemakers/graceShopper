@@ -25,6 +25,7 @@ const Navbar = () => {
                 <Link to="/home">Home</Link>
                 <Link to="/pots">Pots</Link>
                 <Link to="/users">Users</Link>
+                <Link to="/cart">Cart</Link>
                 <div id="logout">
                   <a href="#" onClick={() => dispatch(logout())}>
                     Logout
@@ -35,6 +36,7 @@ const Navbar = () => {
               <div>
                 <Link to="/home">Home</Link>
                 <Link to="/pots">Pots</Link>
+                <Link to="/cart">Cart</Link>
                 <div id="logout">
                   <a href="#" onClick={() => dispatch(logout())}>
                     Logout
@@ -47,6 +49,7 @@ const Navbar = () => {
           <div>
             <Link to="/home">Home</Link>
             <Link to="/pots">Pots</Link>
+            <Link to="/cart">Cart</Link>
             <div id="loginSignup">
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
