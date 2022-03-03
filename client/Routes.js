@@ -7,6 +7,7 @@ import { me } from './store';
 import AllPots from './components/AllPots';
 import AllUsers from './components/AllUsers';
 import SinglePot from './components/SinglePot';
+import Cart from './components/Cart';
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Routes = () => {
           <Route exact path="/pots" component={AllPots} />
           <Route path="/pots/:potId" component={SinglePot} />
           <Route path="/users" component={AllUsers} />
+          <Route path="/cart" component={Cart} />
           <Route path="/home" component={Home} />
           <Redirect to="/home" />
         </Switch>
@@ -33,6 +35,7 @@ const Routes = () => {
         <Switch>
           <Route exact path="/pots" component={AllPots} />
           <Route path="/pots/:potId" component={SinglePot} />
+          <Route path="/cart" component={Cart} />
           <Route path="/" exact component={Login} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
