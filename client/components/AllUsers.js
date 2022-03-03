@@ -18,7 +18,7 @@ const AllUsers = () => {
   return (
     <div>
       {users.map((user) => {
-        return <div>{user.username}</div>;
+        return <div key={user.id}>{user.username}</div>;
       })}
     </div>
   );

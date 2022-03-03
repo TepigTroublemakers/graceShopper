@@ -13,6 +13,6 @@ router.get('/', authenticateAdminToken, async (req, res, next) => {
     if (!users) throw new Error(404)
     res.json(users)
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { authenticate } from '../store';
+import { authenticate, authenticateSignUp } from '../store';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -53,7 +53,8 @@ export const Signup = () => {
     const formName = e.target.name;
     const username = e.target.username.value;
     const password = e.target.password.value;
-    dispatch(authenticate(username, password, formName));
+    const email = e.target.email.value;
+    dispatch(authenticateSignUp(username, password, email, formName));
   };
 
   return (
@@ -70,6 +71,12 @@ export const Signup = () => {
             <small>Password</small>
           </label>
           <input name="password" type="password" />
+        </div>
+        <div>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input name="email" type="text" />
         </div>
         <div>
           <button type="submit">Sign Up</button>
