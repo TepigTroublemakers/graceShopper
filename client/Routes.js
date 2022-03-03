@@ -33,7 +33,8 @@ const Routes = () => {
         <Switch>
           <Route exact path="/pots" component={AllPots} />
           <Route path="/pots/:potId" component={SinglePot} />
-          <Route path="/" exact component={Login} />
+          <Route path="/home" component={Home} />
+          <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
         </Switch>

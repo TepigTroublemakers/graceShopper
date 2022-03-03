@@ -36,6 +36,19 @@ form div {
   text-align: center;
 }
 
+.purchase {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 5px;
+  height: 20px;
+}
+
+.buyAmount {
+  height: 14px;
+  width: 34px;
+}
+
 #pageNumbers {
   display: flex;
   flex-direction: row;
@@ -76,4 +89,9 @@ form div {
   position: absolute;
   top: 0px;
   right: 0px;
+}
+
+#filters {
+  position: absolute;
+  font-size: 13px;
 }
