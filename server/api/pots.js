@@ -44,11 +44,11 @@ potsRouter.post('/', authenticateAdminToken, async (req, res, next) => {
 // DELETE /api/pots/:potId
 potsRouter.delete('/:potId', authenticateAdminToken, async (req, res, next) => {
   try {
-    const potToDelete = await Pot.findByPk(req.params.id);
+    const potToDelete = await Pot.findByPk(req.params.potId);
     if (!potToDelete) throw new Error(404);
     await Pot.destroy({
       where: {
-        id: req.params.id,
+        id: req.params.potId,
       },
     });
     res.json(potToDelete);
@@ -58,10 +58,10 @@ potsRouter.delete('/:potId', authenticateAdminToken, async (req, res, next) => {
 });
 
 // PUT /api/pots/:potId
-potsRouter.put('/:id', authenticateAdminToken, async (req, res, next) => {
+potsRouter.put('/:potId', authenticateAdminToken, async (req, res, next) => {
   try {
     const { description, imageUrl, quantity, price, category } = req.body;
-    const potToUpdate = await Pot.findByPk(req.params.id);
+    const potToUpdate = await Pot.findByPk(req.params.potId);
     if (!potToUpdate) throw new Error(404);
     const updatedPot = await potToUpdate.update({
       description,
