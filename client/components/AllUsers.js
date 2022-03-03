@@ -16,9 +16,15 @@ const AllUsers = () => {
   }, []);
 
   return (
-    <div>
+    <div className="user-display-container">
       {users.map((user) => {
-        return <div key={user.id}>{user.username}</div>;
+        return (
+          <div key={user.id} className="user-display">
+            <h1>{user.username}</h1>
+            <h3>{user.role}</h3>
+            <h3>{user.email}</h3>
+          </div>
+        )
       })}
     </div>
   );
