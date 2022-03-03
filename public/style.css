@@ -60,3 +60,15 @@ form div {
 #currentPage {
   text-align: center;
 }
+
+#loginSignup {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+#logout {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}

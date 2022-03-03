@@ -25,24 +25,31 @@ const Navbar = () => {
                 <Link to="/home">Home</Link>
                 <Link to="/users">Users</Link>
                 <Link to="/pots">Pots</Link>
-                <a href="#" onClick={() => dispatch(logout())}>
-                  Logout
-                </a>
+                <div id="logout">
+                  <a href="#" onClick={() => dispatch(logout())}>
+                    Logout
+                  </a>
+                </div>
               </div>
             ) : (
               <div>
                 <Link to="/home">Home</Link>
                 <Link to="/pots">Pots</Link>
-                <a href="#" onClick={() => dispatch(logout())}>
-                  Logout
-                </a>
+                <div id="logout">
+                  <a href="#" onClick={() => dispatch(logout())}>
+                    Logout
+                  </a>
+                </div>
               </div>
             )}
           </div>
         ) : (
           <div>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/pots">Pots</Link>
+            <div id="loginSignup">
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+            </div>
           </div>
         )}
       </nav>
