@@ -53,7 +53,7 @@ async function seed() {
     description: 'Welcome to PotStop!',
     imageUrl: 'https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg',
     quantity: 1,
-    price: 1000000000000,
+    price: 100,
     category: 'other',
   });
 

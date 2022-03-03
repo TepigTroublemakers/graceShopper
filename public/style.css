@@ -72,3 +72,18 @@ form div {
   top: 0px;
   right: 0px;
 }
+
+.user-display {
+  flex-direction: row;
+  align-items: center;
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  background-color: lightgrey;
+  border-radius: 0.25em;
+}
+
+.user-display-container {
+  display: flex;
+  gap: 10px;
+}
