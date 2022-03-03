@@ -14,18 +14,32 @@ const AllUsers = () => {
   useEffect(() => {
     dispatch(getUsersFromDb());
   }, []);
-
+  const admins = users.filter((user) => {
+    if(user.role === 'admin') return user
+  })
+  const customers = users.filter((user) => {
+    if(user.role === 'customer') return user
+  })
   return (
-    <div className="user-display-container">
-      {users.map((user) => {
+    <div>
+      <h2>Admin</h2>
+      <div className="user-display-container">{admins.map((user) => {
         return (
           <div key={user.id} className="user-display">
             <h1>{user.username}</h1>
-            <h3>{user.role}</h3>
             <h3>{user.email}</h3>
           </div>
         )
-      })}
+      })}</div>
+      <h2>Customers</h2>
+      <div className="user-display-container">{customers.map((user) => {
+        return (
+          <div key={user.id} className="user-display">
+            <h1>{user.username}</h1>
+            <h3>{user.email}</h3>
+          </div>
+        )
+      })}</div>
     </div>
   );
 };
