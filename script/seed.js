@@ -50,18 +50,18 @@ async function seed() {
   });
 
   const Pot1 = await Pot.create({
+    description: 'Welcome to PotStop!',
+    imageUrl: 'https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg',
+    quantity: 1,
+    price: 1000000000000,
+    category: 'other',
+  });
+
+  const Pot2 = await Pot.create({
     description: 'Light blue bird',
     imageUrl: 'https://i.gyazo.com/ac10b0467068b82f0f6498326c139656.jpg',
     quantity: 6,
     price: 15.99,
-    category: 'birds',
-  });
-
-  const Pot2 = await Pot.create({
-    description: 'Headless light olive green bird',
-    imageUrl: 'https://i.gyazo.com/647837c9bf347878d3d38577167d313d.jpg',
-    quantity: 4,
-    price: 13.99,
     category: 'birds',
   });
 
@@ -83,7 +83,7 @@ async function seed() {
 
   const Pot5 = await Pot.create({
     description: "Bird on a gnome's head",
-    imageUrl: 'https://i.gyazo.com/189bdf51119fb1d5e25d8da65bcd4e9a.jpg',
+    imageUrl: 'https://i.gyazo.com/d389a8b6b5a2b52aa038a88fc1c48796.jpg',
     quantity: 3,
     price: 27.99,
     category: 'wacky',
@@ -98,7 +98,7 @@ async function seed() {
   });
 
   const Pot7 = await Pot.create({
-    description: 'Blue Styracosaurus dinosaur with Dirk Nowitzki',
+    description: 'Blue Triceratops dinosaur with Dirk Nowitzki',
     imageUrl: 'https://i.gyazo.com/524de243d3c290506b87af0d17bbdab6.jpg',
     quantity: 2,
     price: 41.99,
@@ -114,10 +114,10 @@ async function seed() {
   });
 
   const Pot9 = await Pot.create({
-    description: 'Simple gnome',
+    description: 'Simple gnome with yellow headband',
     imageUrl: 'https://i.gyazo.com/be221a7684c924c768dc36dfa00a1c74.jpg',
     quantity: 9,
-    price: 12.99,
+    price: 16.99,
     category: 'other',
   });
 
@@ -139,9 +139,9 @@ async function seed() {
 
   const Pot12 = await Pot.create({
     description: 'Yellow lion cat with custom patterns',
-    imageUrl: 'https://i.gyazo.com/e30ba9be12bd5838097f6878a74bd0dd.jpg',
+    imageUrl: 'https://i.gyazo.com/9738cc52dbe6e6b59a51fbc8c3761b87.jpg',
     quantity: 5,
-    price: 16.99,
+    price: 33.99,
     category: 'mammals',
   });
 
@@ -491,6 +491,184 @@ async function seed() {
     price: 16.99,
     category: 'owls',
   });
+
+  const Pot56 = await Pot.create({
+    description: 'Headless light olive green bird',
+    imageUrl: 'https://i.gyazo.com/647837c9bf347878d3d38577167d313d.jpg',
+    quantity: 4,
+    price: 13.99,
+    category: 'birds',
+  });
+
+  const Pot57 = await Pot.create({
+    description: 'Console.log(plantPot)',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/a059cd1cd9a2b25fef71e728251bf56a-heic.jpg',
+    quantity: 11,
+    price: 31.99,
+    category: 'other',
+  });
+
+  const Pot58 = await Pot.create({
+    description: 'White pot with blue bottom',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/fff36d2fafbef4eac470be9673ec5c6b-heic.jpg',
+    quantity: 6,
+    price: 18.99,
+    category: 'other',
+  });
+
+  const Pot59 = await Pot.create({
+    description: 'A blue owl with his blue pot',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/38e34b688505928be0830daee509b615-heic.jpg',
+    quantity: 8,
+    price: 20.99,
+    category: 'owls',
+  });
+
+  const Pot60 = await Pot.create({
+    description: 'The double pot extravaganza',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/c10086790904fcf8ff5fcc42584e14c5-heic.jpg',
+    quantity: 8,
+    price: 23.99,
+    category: 'other',
+  });
+
+  const Pot61 = await Pot.create({
+    description: 'Painted panda pot',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/26c077cd97f8f8aeb284d0a37f3ddeb8-heic.jpg',
+    quantity: 11,
+    price: 18.99,
+    category: 'mammals',
+  });
+
+  const Pot62 = await Pot.create({
+    description: 'Silver pot with a tall order',
+    imageUrl: 'https://i.gyazo.com/thumb/2813/ea20d58a79a18c7a52dd503f5d85c47f-heic.jpg',
+    quantity: 5,
+    price: 20.99,
+    category: 'other',
+  });
+
+  const Pot63 = await Pot.create({
+    description: 'The owl/pot combo',
+    imageUrl: 'https://i.gyazo.com/a518a87d11e144fb8d9e41b76442c4d4.jpg',
+    quantity: 10,
+    price: 22.99,
+    category: 'birds',
+  });
+
+  const Pot64 = await Pot.create({
+    description: 'The two-pot combo',
+    imageUrl: 'https://i.gyazo.com/cf8fcf585c5256676953e706bd9ba5e1.jpg',
+    quantity: 10,
+    price: 20.99,
+    category: 'birds',
+  });
+
+  const Pot65 = await Pot.create({
+    description: 'Tall brownish-gray pot',
+    imageUrl: 'https://i.gyazo.com/thumb/2561/2606bd734159cfb16b12bd19f9190ad1-heic.jpg',
+    quantity: 7,
+    price: 20.99,
+    category: 'other',
+  });
+
+  const Pot66 = await Pot.create({
+    description: 'Large multi-colored painted pot',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/cdf156ca47f79b63da52c2616e7cc1d8-heic.jpg',
+    quantity: 4,
+    price: 27.99,
+    category: 'other',
+  });
+
+  const Pot67 = await Pot.create({
+    description: 'Lucky money tree',
+    imageUrl: 'https://i.gyazo.com/thumb/2283/a1ed308f35119efca527fabbaa2b6c4d-heic.jpg',
+    quantity: 14,
+    price: 13.99,
+    category: 'other',
+  });
+
+  const Pot68 = await Pot.create({
+    description: 'Tan-brown-white themed combo',
+    imageUrl: 'https://i.gyazo.com/9c257000489a5ed8de4c2702efa3ef5d.jpg',
+    quantity: 9,
+    price: 20.99,
+    category: 'other',
+  });
+
+  const Pot69 = await Pot.create({
+    description: 'Red camper vehicle',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/5724d5fc0448a62ad7287d40b4be7cf5-heic.jpg',
+    quantity: 4,
+    price: 16.99,
+    category: 'other',
+  });
+
+  const Pot70 = await Pot.create({
+    description: 'Tiny painted pot and small blue pot',
+    imageUrl: 'https://i.gyazo.com/7fba5b138a1a8b94d1aaf8e76b329586.jpg',
+    quantity: 8,
+    price: 20.99,
+    category: 'other',
+  });
+
+  const Pot71 = await Pot.create({
+    description: 'Two small pretty pots',
+    imageUrl: 'https://i.gyazo.com/e107a695d47f335e4d34c9acccdd5d0f.jpg',
+    quantity: 11,
+    price: 21.99,
+    category: 'other',
+  });
+
+  const Pot72 = await Pot.create({
+    description: 'Maroon striped with shiny brown pot',
+    imageUrl: 'https://i.gyazo.com/37bd53200c30721dfd300d7cb5697738.jpg',
+    quantity: 7,
+    price: 21.99,
+    category: 'other',
+  });
+
+  const Pot73 = await Pot.create({
+    description: 'The double green dream team',
+    imageUrl: 'https://i.gyazo.com/61b3d2fb6c5b5f9a7e69a8c6f6fc3689.jpg',
+    quantity: 9,
+    price: 21.99,
+    category: 'birds',
+  });
+
+  const Pot74 = await Pot.create({
+    description: 'The salt and pepper combo',
+    imageUrl: 'https://i.gyazo.com/44349bc6973f9cb9a1be5901a7c36eb0.jpg',
+    quantity: 11,
+    price: 21.99,
+    category: 'wacky',
+  });
+
+  const Pot75 = await Pot.create({
+    description: 'A small bird with a small blue pot',
+    imageUrl: 'https://i.gyazo.com/ae46535d14cff583573fcfc938c16d07.jpg',
+    quantity: 9,
+    price: 20.99,
+    category: 'birds',
+  });
+
+  const Pot76 = await Pot.create({
+    description: 'The two small pot special',
+    imageUrl: 'https://i.gyazo.com/8b64ed2a7cecf1e4993d77f91f2ddc2f.jpg',
+    quantity: 12,
+    price: 18.99,
+    category: 'other',
+  });
+
+  const Pot77 = await Pot.create({
+    description: 'Green t-rex with Muggsy Bogues',
+    imageUrl: 'https://i.gyazo.com/thumb/3024/e13b48d95dd4e80c3ddee329d5a22864-heic.jpg',
+    quantity: 5,
+    price: 38.99,
+    category: 'reptiles',
+  });
+
+
 
   // rob added above ^^
 
