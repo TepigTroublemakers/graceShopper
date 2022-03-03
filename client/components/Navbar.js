@@ -18,42 +18,36 @@ const Navbar = () => {
     <div>
       <h1>PotStop</h1>
       <nav>
+        <div>
+          <Link to="/home">Home</Link>
+          <Link to="/pots">Pots</Link>
+          <Link id="cartNav" to="/cart">
+            Cart
+          </Link>
+        </div>
         {isLoggedIn ? (
           <div>
             {role === 'admin' ? (
               <div>
-                <Link to="/home">Home</Link>
-                <Link to="/pots">Pots</Link>
-                <Link to="/users">Users</Link>
-                <Link to="/cart">Cart</Link>
-                <div id="logout">
-                  <a href="#" onClick={() => dispatch(logout())}>
-                    Logout
-                  </a>
-                </div>
+                <Link id="usersNav" to="/users">
+                  Users
+                </Link>
+                <a id="logout" href="#" onClick={() => dispatch(logout())}>
+                  Logout
+                </a>
               </div>
             ) : (
-              <div>
-                <Link to="/home">Home</Link>
-                <Link to="/pots">Pots</Link>
-                <Link to="/cart">Cart</Link>
-                <div id="logout">
-                  <a href="#" onClick={() => dispatch(logout())}>
-                    Logout
-                  </a>
-                </div>
+              <div id="logout">
+                <a href="#" onClick={() => dispatch(logout())}>
+                  Logout
+                </a>
               </div>
             )}
           </div>
         ) : (
-          <div>
-            <Link to="/home">Home</Link>
-            <Link to="/pots">Pots</Link>
-            <Link to="/cart">Cart</Link>
-            <div id="loginSignup">
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
+          <div id="loginSignup">
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </nav>
