@@ -20,6 +20,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
+    // o: always check for when resource does not exist
     res.send(
       await Payment.findOne({
         include: {
@@ -37,6 +38,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    // o: can I theoretically pay for someone else?
     res.status(201).send(await Payment.create(req.body));
   } catch (err) {
     next(err);
@@ -45,6 +47,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
+    // o: always check for when resource does not exist
     const payments = await Payment.findOne({
       include: {
         model: User,
@@ -61,6 +64,7 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
+    // o: always check for when resource does not exist
     const payments = await Payment.findByPk(req.params.id);
     await payments.destroy();
     res.send(payments);

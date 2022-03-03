@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
+// o: can you explain this?
 const Payment = db.define('payment', {
   name: {
     type: Sequelize.STRING,

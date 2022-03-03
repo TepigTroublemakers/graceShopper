@@ -3,6 +3,8 @@ const { models: { User }} = require('../db')
 const jwt = require('jsonwebtoken')
 module.exports = router
 
+// o: if you plan on using this elsewhere, make sure to move it to it's own
+//  separate module
 async function authenticateAdminToken(req, res, next) {
   try {
     console.log(req.headers);

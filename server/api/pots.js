@@ -14,6 +14,7 @@ potsRouter.get('/', async (req, res, next) => {
 // GET /api/pots/:potId
 potsRouter.get('/:potId', async (req, res, next) => {
   try {
+    // o: always check for when resource does not exist
     const pot = await Pot.findByPk(req.params.potId);
     res.json(pot);
   } catch (err) {
@@ -22,6 +23,7 @@ potsRouter.get('/:potId', async (req, res, next) => {
 });
 
 // POST /api/pots
+// o: only admins should be able to do this
 potsRouter.post('/', async (req, res, next) => {
   try {
     const { description, imageUrl, quantity, price, category } = req.body;
@@ -39,6 +41,7 @@ potsRouter.post('/', async (req, res, next) => {
 });
 
 // DELETE /api/pots/:potId
+// o: only admins should be able to do this
 potsRouter.delete('/:potId', async (req, res, next) => {
   try {
     const potToDelete = await Pot.findByPk(req.params.id);
@@ -54,9 +57,11 @@ potsRouter.delete('/:potId', async (req, res, next) => {
 });
 
 // PUT /api/pots/:potId
+// o: only admins should be able to do this
 potsRouter.put('/:id', async (req, res, next) => {
   try {
     const { description, imageUrl, quantity, price, category } = req.body;
+    // o: always check for when resource does not exist
     const potToUpdate = await Pot.findByPk(req.params.id);
     const updatedPot = await potToUpdate.update({
       description,

@@ -22,6 +22,7 @@ const Pot = db.define('pot', {
       notEmpty: true,
     },
   },
+  // o: make sure to set the precision to 2 here
   price: {
     type: Sequelize.DECIMAL,
     defaultValue: 1,

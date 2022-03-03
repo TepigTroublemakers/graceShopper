@@ -15,6 +15,7 @@ const User = db.define('user', {
   password: {
     type: Sequelize.STRING,
   },
+  // o: easier to use a boolean
   role: {
     type: Sequelize.ENUM('customer', 'admin'),
     defaultValue: 'customer',
