@@ -76,9 +76,10 @@ form div {
 .user-display {
   flex-direction: row;
   align-items: center;
-  height: 250px;
+  height: 100px;
   width: 250px;
   text-align: center;
+  line-height: 20px;
   background-color: lightgrey;
   border-radius: 0.25em;
 }
@@ -86,4 +87,5 @@ form div {
 .user-display-container {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }

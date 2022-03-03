@@ -22,6 +22,7 @@ const AllPots = () => {
   function changePage(e) {
     e.preventDefault();
     setCurrentPage(Number(e.target.id));
+    window.scrollTo(0,0);
   }
 
   const indexOfLast = currentPage * contentPerPage;
