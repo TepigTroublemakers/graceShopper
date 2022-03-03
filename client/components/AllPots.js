@@ -36,7 +36,7 @@ const AllPots = () => {
   function changePage(e) {
     e.preventDefault();
     setCurrentPage(Number(e.target.id));
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   const indexOfLast = currentPage * contentPerPage;
@@ -71,7 +71,12 @@ const AllPots = () => {
         <h3 className="allSinglePotsDesc">{pot.description}</h3>${pot.price}
         <div className="purchase">
           <form>
-            <input className="buyAmount" type="number" min={0}></input>
+            <input
+              className="buyAmount"
+              type="number"
+              min={0}
+              max={pot.quantity}
+            ></input>
             <button type="submit">Add to Cart</button>
           </form>
         </div>
