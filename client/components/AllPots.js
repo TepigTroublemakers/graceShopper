@@ -47,9 +47,9 @@ const AllPots = () => {
 
   const allPageNum = pageNumbers.map((number) => {
     return (
-      <div key={number} id={number} className="pages" onClick={changePage}>
+      <button key={number} id={number} className="pages" onClick={changePage}>
         {number}
-      </div>
+      </button>
     );
   });
 

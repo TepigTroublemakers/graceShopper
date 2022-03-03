@@ -23,7 +23,7 @@ const Pot = db.define('pot', {
     },
   },
   price: {
-    type: Sequelize.DECIMAL(2),
+    type: Sequelize.DECIMAL(10, 2),
     defaultValue: 1,
     allowNull: false,
     validate: {

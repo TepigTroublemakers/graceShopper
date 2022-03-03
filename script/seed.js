@@ -53,7 +53,7 @@ async function seed() {
     description: 'Welcome to PotStop!',
     imageUrl: 'https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg',
     quantity: 1,
-    price: 1000000000000,
+    price: 1000000,
     category: 'other',
   });
 
@@ -395,7 +395,6 @@ async function seed() {
     category: 'owls',
   });
 
-
   const Pot44 = await Pot.create({
     description: 'Colorful owl on nest looking up',
     imageUrl: 'https://i.gyazo.com/48e91eaa8ff2c465462d2542b5ddfba2.jpg',
@@ -502,7 +501,8 @@ async function seed() {
 
   const Pot57 = await Pot.create({
     description: 'Console.log(plantPot)',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/a059cd1cd9a2b25fef71e728251bf56a-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/a059cd1cd9a2b25fef71e728251bf56a-heic.jpg',
     quantity: 11,
     price: 31.99,
     category: 'other',
@@ -510,7 +510,8 @@ async function seed() {
 
   const Pot58 = await Pot.create({
     description: 'White pot with blue bottom',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/fff36d2fafbef4eac470be9673ec5c6b-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/fff36d2fafbef4eac470be9673ec5c6b-heic.jpg',
     quantity: 6,
     price: 18.99,
     category: 'other',
@@ -518,7 +519,8 @@ async function seed() {
 
   const Pot59 = await Pot.create({
     description: 'A blue owl with his blue pot',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/38e34b688505928be0830daee509b615-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/38e34b688505928be0830daee509b615-heic.jpg',
     quantity: 8,
     price: 20.99,
     category: 'owls',
@@ -526,7 +528,8 @@ async function seed() {
 
   const Pot60 = await Pot.create({
     description: 'The double pot extravaganza',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/c10086790904fcf8ff5fcc42584e14c5-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/c10086790904fcf8ff5fcc42584e14c5-heic.jpg',
     quantity: 8,
     price: 23.99,
     category: 'other',
@@ -534,7 +537,8 @@ async function seed() {
 
   const Pot61 = await Pot.create({
     description: 'Painted panda pot',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/26c077cd97f8f8aeb284d0a37f3ddeb8-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/26c077cd97f8f8aeb284d0a37f3ddeb8-heic.jpg',
     quantity: 11,
     price: 18.99,
     category: 'mammals',
@@ -542,7 +546,8 @@ async function seed() {
 
   const Pot62 = await Pot.create({
     description: 'Silver pot with a tall order',
-    imageUrl: 'https://i.gyazo.com/thumb/2813/ea20d58a79a18c7a52dd503f5d85c47f-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/2813/ea20d58a79a18c7a52dd503f5d85c47f-heic.jpg',
     quantity: 5,
     price: 20.99,
     category: 'other',
@@ -566,7 +571,8 @@ async function seed() {
 
   const Pot65 = await Pot.create({
     description: 'Tall brownish-gray pot',
-    imageUrl: 'https://i.gyazo.com/thumb/2561/2606bd734159cfb16b12bd19f9190ad1-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/2561/2606bd734159cfb16b12bd19f9190ad1-heic.jpg',
     quantity: 7,
     price: 20.99,
     category: 'other',
@@ -574,7 +580,8 @@ async function seed() {
 
   const Pot66 = await Pot.create({
     description: 'Large multi-colored painted pot',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/cdf156ca47f79b63da52c2616e7cc1d8-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/cdf156ca47f79b63da52c2616e7cc1d8-heic.jpg',
     quantity: 4,
     price: 27.99,
     category: 'other',
@@ -582,7 +589,8 @@ async function seed() {
 
   const Pot67 = await Pot.create({
     description: 'Lucky money tree',
-    imageUrl: 'https://i.gyazo.com/thumb/2283/a1ed308f35119efca527fabbaa2b6c4d-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/2283/a1ed308f35119efca527fabbaa2b6c4d-heic.jpg',
     quantity: 14,
     price: 13.99,
     category: 'other',
@@ -598,7 +606,8 @@ async function seed() {
 
   const Pot69 = await Pot.create({
     description: 'Red camper vehicle',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/5724d5fc0448a62ad7287d40b4be7cf5-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/5724d5fc0448a62ad7287d40b4be7cf5-heic.jpg',
     quantity: 4,
     price: 16.99,
     category: 'other',
@@ -662,13 +671,12 @@ async function seed() {
 
   const Pot77 = await Pot.create({
     description: 'Green t-rex with Muggsy Bogues',
-    imageUrl: 'https://i.gyazo.com/thumb/3024/e13b48d95dd4e80c3ddee329d5a22864-heic.jpg',
+    imageUrl:
+      'https://i.gyazo.com/thumb/3024/e13b48d95dd4e80c3ddee329d5a22864-heic.jpg',
     quantity: 5,
     price: 38.99,
     category: 'reptiles',
   });
-
-
 
   // rob added above ^^
 
