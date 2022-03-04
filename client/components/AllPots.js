@@ -69,17 +69,6 @@ const AllPots = () => {
           <img src={pot.imageUrl} style={{ width: '200px' }} />
         </Link>
         <h3 className="allSinglePotsDesc">{pot.description}</h3>${pot.price}
-        <div className="purchase">
-          <form>
-            <input
-              className="buyAmount"
-              type="number"
-              min={0}
-              max={pot.quantity}
-            ></input>
-            <button type="submit">Add to Cart</button>
-          </form>
-        </div>
       </div>
     );
   });
