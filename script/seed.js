@@ -750,6 +750,38 @@ async function seed() {
     category: 'other',
   });
 
+  const Pot87 = await Pot.create({
+    description: 'Purple shaded medium pot',
+    imageUrl: 'https://i.gyazo.com/9d1f2f8322a74f4692ceb1d445a6e074.jpg',
+    quantity: 6,
+    price: 16.99,
+    category: 'other',
+  });
+
+  const Pot88 = await Pot.create({
+    description: 'A Cat Attack',
+    imageUrl: 'https://i.gyazo.com/64dfb5ce0848e37446d322379a183f89.jpg',
+    quantity: 4,
+    price: 18.99,
+    category: 'other',
+  });
+
+  const Pot89 = await Pot.create({
+    description: 'The double trouble owl combo',
+    imageUrl: 'https://i.gyazo.com/ef36b83c49f40fca884c19ff23e4831f.jpg',
+    quantity: 8,
+    price: 22.99,
+    category: 'owls',
+  });
+
+  // const Pot90 = await Pot.create({
+  //   description: 'Saved for Tepig',
+  //   imageUrl: '',
+  //   quantity: 7,
+  //   price: 18.99,
+  //   category: 'other',
+  // });
+
   // rob added above ^^
 
   const Payment1 = await Payment.create({
