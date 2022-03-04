@@ -15,14 +15,17 @@ const Navbar = () => {
   });
 
   return (
-    <div>
-      <h1>PotStop</h1>
+    <div id="navbar">
       <nav>
         <div>
-          <Link to="/home">Home</Link>
-          <Link to="/pots">Pots</Link>
+          <Link to="/home">
+            <img src="PotStopLogo.png" />
+          </Link>
+          <Link to="/pots">
+            <img src="Pots.png" />
+          </Link>
           <Link id="cartNav" to="/cart">
-            Cart
+            <img src="Cart.png" />
           </Link>
         </div>
         {isLoggedIn ? (

@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <div>
+        <div id="home">
           <h3>Welcome, {username}</h3>
           <img
             src="https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg"
@@ -21,7 +21,7 @@ const Home = () => {
           />
         </div>
       ) : (
-        <div>
+        <div id="home">
           <img
             src="https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg"
             style={{ width: '500px' }}
