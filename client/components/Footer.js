@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div id="footer">
       <p style={{ fontSize: '17px' }}>Created By</p>
-      <div class="socials">
+      <div className="socials">
         <a href="https://github.com/egarris">
           <img src="GithubLogo.jpg" />
         </a>

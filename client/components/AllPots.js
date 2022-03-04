@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPots } from '../store/pots';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const AllPots = () => {
   const [filter, setFilter] = useState('');
@@ -111,22 +111,27 @@ const AllPots = () => {
     );
   });
 
-  const categories = pots
-    .map((pot) => pot.category)
-    .filter((val, idx, unique) => unique.indexOf(val) === idx)
-    .map((category, idx) => {
-      return (
-        <label key={idx}>
-          <input
-            type="radio"
-            name="category"
-            value={category}
-            onChange={handleFilter}
-          />
-          {category.charAt(0).toUpperCase() + category.slice(1)}
-        </label>
-      );
-    });
+  const categories = [
+    'all',
+    'birds',
+    'owls',
+    'reptiles',
+    'mammals',
+    'wacky',
+    'other',
+  ].map((category, idx) => {
+    return (
+      <label key={idx}>
+        <input
+          type="radio"
+          name="category"
+          value={category}
+          onChange={handleFilter}
+        />
+        {category.charAt(0).toUpperCase() + category.slice(1)}
+      </label>
+    );
+  });
 
   const pricesFilter = ['all', '$', '$$', '$$$'].map((price, idx) => {
     return (
@@ -149,15 +154,6 @@ const AllPots = () => {
         <br></br>
         <div>
           Category
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="all"
-              onChange={handleFilter}
-            />
-            All
-          </label>
           {categories}
         </div>
         <br></br>
@@ -166,11 +162,13 @@ const AllPots = () => {
           {pricesFilter}
         </div>
       </div>
-      <div id="allPotsRender">{allPots}</div>
-      <div id="pageNumbers">{allPageNum}</div>
-      {allPageNum.length ? (
-        <div id="currentPage">Page: {currentPage}</div>
-      ) : null}
+      <div>
+        <div id="allPotsRender">{allPots}</div>
+        <div id="pageNumbers">{allPageNum}</div>
+        {allPageNum.length ? (
+          <div id="currentPage">Page: {currentPage}</div>
+        ) : null}
+      </div>
     </div>
   );
 };
