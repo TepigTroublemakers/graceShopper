@@ -139,9 +139,9 @@ const AllPots = () => {
       );
     });
 
-  const pricesFilter = ['all', '$', '$$', '$$$'].map((price) => {
+  const pricesFilter = ['all', '$', '$$', '$$$'].map((price, idx) => {
     return (
-      <label>
+      <label key={idx}>
         <input
           type="radio"
           name="price"
