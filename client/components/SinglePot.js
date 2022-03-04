@@ -32,6 +32,7 @@ const SinglePot = () => {
     setCartData([
       ...cartData,
       {
+        id: potId,
         description: description,
         quantity: orderQty,
         price: price,
@@ -39,7 +40,7 @@ const SinglePot = () => {
     ]);
   };
 
-  const { description, imageUrl, quantity, price, category } = singlePot;
+  const { id, description, imageUrl, quantity, price, category } = singlePot;
 
   return (
     <div>
