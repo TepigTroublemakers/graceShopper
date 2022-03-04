@@ -25,4 +25,5 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 
 ## Resources
 
+- [Deployed App (Heroku)](https://pot-stop.herokuapp.com/pots)
 - [Google Drive](https://drive.google.com/drive/u/0/folders/1Nz5UA9kb8UkjN5oHXTRXtVgce6fdLkXr)

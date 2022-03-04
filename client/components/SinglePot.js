@@ -11,22 +11,21 @@ const SinglePot = () => {
   });
 
   const [orderQty, setOrderQty] = useState(1);
-  const [cartData, setCartData] = useState([]);
+  const [cartData, setCartData] = useState(() => {
+    const localStorageData = JSON.parse(localStorage.getItem('data'));
+    return localStorageData || [];
+  });
 
   const { potId } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSinglePot(potId));
-    if (localStorage.data) {
-      const data = JSON.parse(localStorage.getItem('data'));
-      setCartData(data);
-    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(cartData));
-  }, [cartData]);
+    localStorage.setItem('data', JSON.stringify(cartData))
+  }, [cartData])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,9 +38,6 @@ const SinglePot = () => {
       },
     ]);
   };
-  console.log('AFTER SUBMIT: ', cartData);
-
-  console.log('LOCAL: ', localStorage.data);
 
   const { description, imageUrl, quantity, price, category } = singlePot;
 
@@ -66,7 +62,9 @@ const SinglePot = () => {
         />
         <br />
         <br />
-        <button onSubmit={handleSubmit} type="submit">Add to Cart</button>
+        <button onSubmit={handleSubmit} type="submit">
+          Add to Cart
+        </button>
       </form>
     </div>
   );
