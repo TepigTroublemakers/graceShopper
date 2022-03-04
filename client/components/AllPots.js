@@ -69,17 +69,6 @@ const AllPots = () => {
           <img src={pot.imageUrl} style={{ width: '200px' }} />
         </Link>
         <h3 className="allSinglePotsDesc">{pot.description}</h3>${pot.price}
-        <div className="purchase">
-          <form>
-            <input
-              className="buyAmount"
-              type="number"
-              min={0}
-              max={pot.quantity}
-            ></input>
-            <button type="submit">Add to Cart</button>
-          </form>
-        </div>
       </div>
     );
   });
@@ -122,6 +111,37 @@ const AllPots = () => {
     );
   });
 
+  const categories = pots
+    .map((pot) => pot.category)
+    .filter((val, idx, unique) => unique.indexOf(val) === idx)
+    .map((category, idx) => {
+      return (
+        <label key={idx}>
+          <input
+            type="radio"
+            name="category"
+            value={category}
+            onChange={handleFilter}
+          />
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </label>
+      );
+    });
+
+  const pricesFilter = ['all', '$', '$$', '$$$'].map((price, idx) => {
+    return (
+      <label key={idx}>
+        <input
+          type="radio"
+          name="price"
+          value={price}
+          onChange={handlePriceFilter}
+        />
+        {price.charAt(0).toUpperCase() + price.slice(1)}
+      </label>
+    );
+  });
+
   return (
     <div>
       <div id="filters">
@@ -132,107 +152,18 @@ const AllPots = () => {
           <label>
             <input
               type="radio"
-              id="reptiles"
               name="category"
               value="all"
               onChange={handleFilter}
             />
             All
           </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="reptiles"
-              onChange={handleFilter}
-            />
-            Reptiles
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="owls"
-              onChange={handleFilter}
-            />
-            Owls
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="birds"
-              onChange={handleFilter}
-            />
-            Birds
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="mammals"
-              onChange={handleFilter}
-            />
-            Mammals
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="wacky"
-              onChange={handleFilter}
-            />
-            Wacky
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="other"
-              onChange={handleFilter}
-            />
-            Other
-          </label>
+          {categories}
         </div>
         <br></br>
         <div>
           Price
-          <label>
-            <input
-              type="radio"
-              name="price"
-              value="all"
-              onChange={handlePriceFilter}
-            />
-            All
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="price"
-              value="$"
-              onChange={handlePriceFilter}
-            />
-            $
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="price"
-              value="$$"
-              onChange={handlePriceFilter}
-            />
-            $$
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="price"
-              value="$$$"
-              onChange={handlePriceFilter}
-            />
-            $$$
-          </label>
+          {pricesFilter}
         </div>
       </div>
       <div id="allPotsRender">{allPots}</div>
