@@ -1,5 +1,9 @@
 body {
   font-family: sans-serif;
+  background-image: linear-gradient(white, silver);
+  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -119,11 +123,51 @@ form div {
 
 #cartNav {
   position: absolute;
-  right: 0px;
+  right: 0;
+  top: 30px;
 }
 
 #usersNav {
   position: absolute;
-  right: 60px;
-  top: 80px;
+  right: 75px;
+  top: 0px;
+}
+
+#navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: white;
+}
+
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  background-color: rgb(24, 24, 24);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#footerBottom {
+  display: flex;
+  background-color: rgb(12, 12, 12);
+  width: 100%;
+  justify-content: center;
+}
+
+#socials {
+  display: flex;
+  flex-direction: row;
 }
