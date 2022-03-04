@@ -4,6 +4,7 @@ const {
   db,
   models: { User, Pot, Payment },
 } = require('../server/db');
+const Cart = require('../server/db/models/Cart');
 
 /**
  * seed - this function clears the database, updates tables to
@@ -47,6 +48,12 @@ async function seed() {
     username: 'Customer1',
     password: '123',
     email: 'test5@gmail.com',
+  });
+
+  const Customer2 = await User.create({
+    username: 'Customer2',
+    password: '123',
+    email: 'test6@gmail.com',
   });
 
   const Pot1 = await Pot.create({
@@ -792,10 +799,14 @@ async function seed() {
     zipcode: 11111,
   });
 
-  await Customer1.addPot(Pot1);
-  await Customer1.addPot(Pot7);
-  await Customer1.addPot(Pot12);
-  await Customer1.addPot(Pot24);
+  const Cart1 = await Cart.create({})
+  const Cart2 = await Cart.create({})
+
+  await Customer1.setCart(Cart1);
+  await Customer2.setCart(Cart2)
+  await Cart1.addPot(Pot7);
+  await Cart2.addPot(Pot15);
+  await Cart1.addPot(Pot24);
   await Customer1.addPayment(Payment1);
   console.log(`seeded successfully`);
 }

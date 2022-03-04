@@ -7,8 +7,6 @@ import React, { useEffect, useState } from 'react';
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
 
-  const [deleted, setDeleted] = useState(-1);
-
   useEffect(() => {
     if (localStorage.data) {
       const data = JSON.parse(localStorage.getItem('data'));
