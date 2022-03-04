@@ -24,8 +24,8 @@ const SinglePot = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(cartData))
-  }, [cartData])
+    localStorage.setItem('data', JSON.stringify(cartData));
+  }, [cartData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
