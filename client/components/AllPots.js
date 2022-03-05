@@ -8,6 +8,8 @@ const AllPots = () => {
   const [price, setPrice] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const contentPerPage = 10;
+  const history = useHistory();
+  const path = window.location.pathname;
 
   const { pots } = useSelector((state) => {
     return {
@@ -146,6 +148,12 @@ const AllPots = () => {
       </label>
     );
   });
+
+  useEffect(() => {
+    let currentUrlParams = new URLSearchParams(window.location.search);
+    currentUrlParams.set('page', currentPage.toString());
+    history.push(`${path}?page=${currentPage}`);
+  }, [currentPage, history, path]);
 
   return (
     <div>

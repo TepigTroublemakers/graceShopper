@@ -21,8 +21,8 @@ const Navbar = () => {
           <Link to="/home">
             <img src="PotStopLogo.png" />
           </Link>
-          <Link to="/pots">
-            <img src="Pots.png" />
+          <Link id="shopNav" to="/pots">
+            <img src="Pot.png" />
           </Link>
           <Link id="cartNav" to="/cart">
             <img src="Cart.png" />
@@ -48,9 +48,8 @@ const Navbar = () => {
             )}
           </div>
         ) : (
-          <div id="loginSignup">
+          <div id="login">
             <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </nav>

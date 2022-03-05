@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <div id="footer">
-      <p style={{ fontSize: '17px' }}>Created By</p>
+      <p style={{ fontSize: '17px', margin: '0' }}>Created By</p>
       <div className="socials">
         <a href="https://github.com/egarris">
           <img src="GithubLogo.jpg" />
