@@ -23,16 +23,16 @@ const Cart = () => {
   const handleClick = (id) => {
     const cartDataCopy = [...cartData];
     let newCart = cartDataCopy.filter((pot) => {
-      if(pot.id !== id) return pot
-    })
+      if (pot.id !== id) return pot;
+    });
     setCartData(newCart);
-  }
+  };
 
   return (
     <div>
       <div>
         {cartData.map((item) => {
-          console.log(item)
+          console.log(item);
           return (
             <div key={item.id}>
               <h3>{item.description}</h3>
@@ -49,10 +49,12 @@ const Cart = () => {
         <h2>Cart Total:</h2>
         <h2>
           $
-          {cartData.reduce((total, item) => {
-            const extPrice = item.price * item.quantity;
-            return total + extPrice;
-          }, 0)}
+          {cartData
+            .reduce((total, item) => {
+              const extPrice = item.price * item.quantity;
+              return total + extPrice;
+            }, 0)
+            .toFixed(2)}
         </h2>
       </div>
     </div>
