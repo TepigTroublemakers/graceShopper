@@ -10,7 +10,7 @@ const SinglePot = () => {
     };
   });
 
-  const [orderQty, setOrderQty] = useState(1);
+  const [orderQty, setOrderQty] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
   const [cartData, setCartData] = useState(() => {
     const localStorageData = JSON.parse(localStorage.getItem('data'));
@@ -46,30 +46,33 @@ const SinglePot = () => {
     setAddedToCart(true);
   };
 
-  const { id, description, imageUrl, quantity, price, category } = singlePot;
+  const { description, imageUrl, quantity, price, category } = singlePot;
+  const totalCost = (price * orderQty).toFixed(2);
 
   return (
-    <div>
+    <div id="singlePot">
       <img src={imageUrl} style={{ width: '350px' }} />
       <h2>{description}</h2>
       <h4>Quantity On Hand: {quantity}</h4>
       <h4>Price: ${price}</h4>
       <h4>Category: {category}</h4>
+      <br />${totalCost}
+      <br />
       <br />
       <form onSubmit={handleSubmit}>
-        <label htmlFor="qty">Quantity:</label>
-        <input
-          type="number"
-          id="qty"
-          name="quantity"
-          value={orderQty}
-          min="1"
-          max={quantity}
-          onChange={(e) => setOrderQty(e.target.value)}
-        />
-        <br />
-        <br />
-        <button type="submit">Add to Cart</button>
+        <label htmlFor="qty">
+          Quantity:{' '}
+          <input
+            type="number"
+            id="qty"
+            name="quantity"
+            value={orderQty}
+            min={0}
+            max={quantity}
+            onChange={(e) => setOrderQty(e.target.value)}
+          />
+          <button type="submit">Add to Cart</button>
+        </label>
         <div>
           {addedToCart ? (
             <h4 style={{ color: 'green' }}>

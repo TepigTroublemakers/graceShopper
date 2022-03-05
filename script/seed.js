@@ -52,7 +52,7 @@ async function seed() {
   const Pot1 = await Pot.create({
     description: 'Light blue bird',
     imageUrl: 'https://i.gyazo.com/ac10b0467068b82f0f6498326c139656.jpg',
-    quantity: 6,
+    quantity: 100,
     price: 15.99,
     category: 'birds',
   });
