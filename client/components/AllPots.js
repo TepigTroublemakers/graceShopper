@@ -59,75 +59,6 @@ const AllPots = (props) => {
     }
   }
 
-  const allPots = pots
-    .filter((pot) => {
-      if (filter === '') {
-        return pot;
-      } else if (pot.category === filter) {
-        return pot;
-      }
-    })
-    .map((pot) => {
-      return (
-        <div key={pot.id} className="allSinglePotsRender">
-          <Link to={`/pots/${pot.id}`}>
-            <img src={pot.imageUrl} style={{ width: '200px' }} />
-          </Link>
-          ${pot.price}
-          <h3 className="allSinglePotsDesc">{pot.description}</h3>
-        </div>
-      );
-    });
-
-  const allPageNum = pageNumbers.map((number, i) => {
-    return (
-      <button
-        key={number}
-        id={number}
-        className={
-          Number(props.location.search.split('=')[1].split('&')[0]) === i + 1
-            ? 'current-page'
-            : 'pages'
-        }
-        onClick={() => {
-          if (filter === '') {
-            props.history.push(`/pots?page=${number}`);
-          }
-          if (filter !== '') {
-            props.history.push(`/pots?page=${number}&category=${filter}`);
-          }
-          window.scroll(0, 0);
-        }}
-      >
-        {number}
-      </button>
-    );
-  });
-
-  const categories = [
-    '',
-    'birds',
-    'owls',
-    'reptiles',
-    'mammals',
-    'wacky',
-    'other',
-  ].map((category, idx) => {
-    return (
-      <label key={idx}>
-        <input
-          type="radio"
-          name="category"
-          value={category}
-          onChange={handleFilter}
-          checked={filterType === category ? true : false}
-        />
-        {category === '' ? 'All' : null}
-        {category.charAt(0).toUpperCase() + category.slice(1)}
-      </label>
-    );
-  });
-
   return (
     <div>
       <div id="filters">
@@ -135,12 +66,76 @@ const AllPots = (props) => {
         <br></br>
         <div>
           Category
-          {categories}
+          {['', 'birds', 'owls', 'reptiles', 'mammals', 'wacky', 'other'].map(
+            (category, idx) => {
+              return (
+                <label key={idx}>
+                  <input
+                    type="radio"
+                    name="category"
+                    value={category}
+                    onChange={handleFilter}
+                    checked={filterType === category ? true : false}
+                  />
+                  {category === '' ? 'All' : null}
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </label>
+              );
+            }
+          )}
         </div>
       </div>
       <div>
-        <div id="allPotsRender">{allPots}</div>
-        <div id="pageNumbers">{allPageNum}</div>
+        <div id="allPotsRender">
+          {pots
+            .filter((pot) => {
+              if (filter === '') {
+                return pot;
+              } else if (pot.category === filter) {
+                return pot;
+              }
+            })
+            .map((pot) => {
+              return (
+                <div key={pot.id} className="allSinglePotsRender">
+                  <Link to={`/pots/${pot.id}`}>
+                    <img src={pot.imageUrl} style={{ width: '200px' }} />
+                  </Link>
+                  ${pot.price}
+                  <h3 className="allSinglePotsDesc">{pot.description}</h3>
+                </div>
+              );
+            })}
+        </div>
+        <div id="pageNumbers">
+          {pageNumbers.map((number, i) => {
+            return (
+              <button
+                key={number}
+                id={number}
+                className={
+                  Number(props.location.search.split('=')[1].split('&')[0]) ===
+                  i + 1
+                    ? 'current-page'
+                    : 'pages'
+                }
+                onClick={() => {
+                  if (filter === '') {
+                    props.history.push(`/pots?page=${number}`);
+                  }
+                  if (filter !== '') {
+                    props.history.push(
+                      `/pots?page=${number}&category=${filter}`
+                    );
+                  }
+                  window.scroll(0, 0);
+                }}
+              >
+                {number}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
