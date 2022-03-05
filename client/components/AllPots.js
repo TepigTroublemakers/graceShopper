@@ -70,7 +70,8 @@ const AllPots = () => {
         <Link to={`/pots/${pot.id}`}>
           <img src={pot.imageUrl} style={{ width: '200px' }} />
         </Link>
-        <h3 className="allSinglePotsDesc">{pot.description}</h3>${pot.price}
+        ${pot.price}
+        <h3 className="allSinglePotsDesc">{pot.description}</h3>
       </div>
     );
   });
