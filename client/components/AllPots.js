@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPots } from '../store/pots';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const AllPots = () => {
+const AllPots = (props) => {
   const [filter, setFilter] = useState('');
-  const [price, setPrice] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const contentPerPage = 10;
-  const history = useHistory();
-  const path = window.location.pathname;
+  const [totalPage, setTotalPage] = useState(1);
 
   const { pots } = useSelector((state) => {
     return {
@@ -19,9 +16,42 @@ const AllPots = () => {
 
   const dispatch = useDispatch();
 
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPage; i++) {
+    pageNumbers.push(i);
+  }
+
+  const filterType = props.location.search.substring(17);
+
   useEffect(() => {
-    dispatch(getAllPots());
-  }, []);
+    let currentPageQuery = props.location.search.split('=')[1].split('&')[0];
+    if (props.location.search === '' || currentPageQuery == 0) {
+      props.history.push('/pots?page=1');
+    }
+    if (filter !== '') {
+      props.history.push(`/pots?page=1&category=${filter}`);
+    }
+    if (filter === '') {
+      props.history.push(`/pots?page=${currentPageQuery}`);
+    }
+  }, [filter]);
+
+  useEffect(() => {
+    dispatch(getAllPots(props.location));
+  }, [props.location.search]);
+
+  useEffect(() => {
+    if (filter !== '') {
+      axios
+        .get(`/api/pots?category=${filter}`)
+        .then((res) => setTotalPage(Math.ceil(res.data.length / 10)));
+    }
+    if (filter === '') {
+      axios
+        .get('/api/pots')
+        .then((res) => setTotalPage(Math.ceil(res.data.length / 10)));
+    }
+  }, [filter]);
 
   function handleFilter(e) {
     if (e.target.checked) {
@@ -29,93 +59,53 @@ const AllPots = () => {
     }
   }
 
-  function handlePriceFilter(e) {
-    if (e.target.checked) {
-      setPrice(e.target.value);
-    }
-  }
-
-  function changePage(e) {
-    e.preventDefault();
-    setCurrentPage(Number(e.target.id));
-    window.scrollTo(0, 0);
-  }
-
-  const indexOfLast = currentPage * contentPerPage;
-  const indexOfFirst = indexOfLast - contentPerPage;
-  const currentPots = pots
+  const allPots = pots
     .filter((pot) => {
-      if (filter === '' || filter === 'all') {
+      if (filter === '') {
         return pot;
       } else if (pot.category === filter) {
         return pot;
       }
     })
-    .filter((pot) => {
-      if (price === '' || price === 'all') {
-        return pot;
-      } else if (pot.price < 15 && price === '$') {
-        return pot;
-      } else if (pot.price > 15 && pot.price < 30 && price === '$$') {
-        return pot;
-      } else if (pot.price > 30 && price === '$$$') {
-        return pot;
-      }
-    })
-    .slice(indexOfFirst, indexOfLast);
+    .map((pot) => {
+      return (
+        <div key={pot.id} className="allSinglePotsRender">
+          <Link to={`/pots/${pot.id}`}>
+            <img src={pot.imageUrl} style={{ width: '200px' }} />
+          </Link>
+          ${pot.price}
+          <h3 className="allSinglePotsDesc">{pot.description}</h3>
+        </div>
+      );
+    });
 
-  const allPots = currentPots.map((pot) => {
+  const allPageNum = pageNumbers.map((number, i) => {
     return (
-      <div key={pot.id} className="allSinglePotsRender">
-        <Link to={`/pots/${pot.id}`}>
-          <img src={pot.imageUrl} style={{ width: '200px' }} />
-        </Link>
-        ${pot.price}
-        <h3 className="allSinglePotsDesc">{pot.description}</h3>
-      </div>
-    );
-  });
-
-  const pageNumbers = [];
-  for (
-    let i = 1;
-    i <=
-    Math.ceil(
-      pots
-        .filter((pot) => {
-          if (filter === '' || filter === 'all') {
-            return pot;
-          } else if (pot.category === filter) {
-            return pot;
+      <button
+        key={number}
+        id={number}
+        className={
+          Number(props.location.search.split('=')[1].split('&')[0]) === i + 1
+            ? 'current-page'
+            : 'pages'
+        }
+        onClick={() => {
+          if (filter === '') {
+            props.history.push(`/pots?page=${number}`);
           }
-        })
-        .filter((pot) => {
-          if (price === '' || price === 'all') {
-            return pot;
-          } else if (pot.price < 15 && price === '$') {
-            return pot;
-          } else if (pot.price > 15 && pot.price < 30 && price === '$$') {
-            return pot;
-          } else if (pot.price > 30 && price === '$$$') {
-            return pot;
+          if (filter !== '') {
+            props.history.push(`/pots?page=${number}&category=${filter}`);
           }
-        }).length / contentPerPage
-    );
-    i++
-  ) {
-    pageNumbers.push(i);
-  }
-
-  const allPageNum = pageNumbers.map((number) => {
-    return (
-      <button key={number} id={number} className="pages" onClick={changePage}>
+          window.scroll(0, 0);
+        }}
+      >
         {number}
       </button>
     );
   });
 
   const categories = [
-    'all',
+    '',
     'birds',
     'owls',
     'reptiles',
@@ -130,31 +120,13 @@ const AllPots = () => {
           name="category"
           value={category}
           onChange={handleFilter}
+          checked={filterType === category ? true : false}
         />
+        {category === '' ? 'All' : null}
         {category.charAt(0).toUpperCase() + category.slice(1)}
       </label>
     );
   });
-
-  const pricesFilter = ['all', '$', '$$', '$$$'].map((price, idx) => {
-    return (
-      <label key={idx}>
-        <input
-          type="radio"
-          name="price"
-          value={price}
-          onChange={handlePriceFilter}
-        />
-        {price.charAt(0).toUpperCase() + price.slice(1)}
-      </label>
-    );
-  });
-
-  useEffect(() => {
-    let currentUrlParams = new URLSearchParams(window.location.search);
-    currentUrlParams.set('page', currentPage.toString());
-    history.push(`${path}?page=${currentPage}`);
-  }, [currentPage, history, path]);
 
   return (
     <div>
@@ -165,18 +137,10 @@ const AllPots = () => {
           Category
           {categories}
         </div>
-        <br></br>
-        <div>
-          Price
-          {pricesFilter}
-        </div>
       </div>
       <div>
         <div id="allPotsRender">{allPots}</div>
         <div id="pageNumbers">{allPageNum}</div>
-        {allPageNum.length ? (
-          <div id="currentPage">Page: {currentPage}</div>
-        ) : null}
       </div>
     </div>
   );

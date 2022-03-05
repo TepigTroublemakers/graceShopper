@@ -78,12 +78,19 @@ form div {
   font-size: 15px;
 }
 
-.pages:hover {
-  cursor: pointer;
+.current-page {
+  background-color: green;
+  border-style: groove;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  border-radius: 30%;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.pages:active {
-  background-color: green;
+.pages:hover {
+  cursor: pointer;
 }
 
 #currentPage {

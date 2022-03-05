@@ -21,7 +21,7 @@ const Navbar = () => {
           <Link to="/home">
             <img src="https://i.gyazo.com/e5e5b6ced15f680ef17ddfff7d1cea61.png" />
           </Link>
-          <Link id="shopNav" to="/pots">
+          <Link id="shopNav" to="/pots?page=1">
             <img src="https://i.gyazo.com/e41dfa6d4eddb7eebe27c086f390091f.png" />
           </Link>
           <Link id="cartNav" to="/cart">

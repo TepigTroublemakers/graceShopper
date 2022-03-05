@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSinglePot } from '../store/singlePot';
 
-const SinglePot = () => {
+const SinglePot = (props) => {
   const { singlePot } = useSelector((state) => {
     return {
       singlePot: state.singlePot,
@@ -72,6 +72,9 @@ const SinglePot = () => {
             onChange={(e) => setOrderQty(e.target.value)}
           />
           <button type="submit">Add to Cart</button>
+          <button id="back" type="button" onClick={() => history.back()}>
+            Back
+          </button>
         </label>
         <div>
           {addedToCart ? (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { authenticateSignUp } from '../store';
 
 const Signup = () => {
@@ -55,6 +56,9 @@ const Signup = () => {
         <div>
           <button type="submit">Sign Up</button>
         </div>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
         {error && error.response && (
           <div style={{ color: 'red' }}> {error.response.data} </div>
         )}
