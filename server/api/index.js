@@ -3,6 +3,7 @@ const router = require('express').Router();
 router.use('/users', require('./users'));
 router.use('/pots', require('./pots'));
 router.use('/payments', require('./payments'));
+router.use('/cart', require('./cart'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');

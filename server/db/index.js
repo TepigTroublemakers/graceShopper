@@ -26,6 +26,7 @@ module.exports = {
     User,
     Pot,
     Payment,
+    cartPot,
     Cart
   },
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addToDbCart } from '../store/cart';
 import { getSinglePot } from '../store/singlePot';
 
 const SinglePot = (props) => {
@@ -10,8 +11,16 @@ const SinglePot = (props) => {
     };
   });
 
+  const isLoggedIn = useSelector((state) => {
+    return !!state.auth.id;
+  });
+  const userId = useSelector((state) => {
+    return state.auth.id;
+  })
+
   const [orderQty, setOrderQty] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [userSubmit, setUserSubmit] = useState(false);
   const [cartData, setCartData] = useState(() => {
     const localStorageData = JSON.parse(localStorage.getItem('data'));
     return localStorageData || [];
@@ -26,15 +35,24 @@ const SinglePot = (props) => {
 
   useEffect(() => {
     setAddedToCart(false);
+    // setUserSubmit(false);
   }, [orderQty]);
 
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(cartData));
   }, [cartData]);
 
+  useEffect(() => {
+    console.log("Dispatching to cart store")
+    dispatch(addToDbCart(potId, orderQty))
+  }, [userSubmit])
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCartData([
+    //need to check if user is logged in, if not, add to local cart, if so, dispatch thunk creator to add to cart
+    if(!isLoggedIn){
+      console.log("adding to local cart")
+      setCartData([
       ...cartData,
       {
         id: potId,
@@ -43,8 +61,19 @@ const SinglePot = (props) => {
         price: price,
       },
     ]);
+
+    }
     setAddedToCart(true);
   };
+
+  const checkLoggedIn = () => {
+    console.log("checking login")
+    if(isLoggedIn){
+      setUserSubmit(true);
+    }else{
+      setUserSubmit(false);
+    }
+  }
 
   const { description, imageUrl, quantity, price, category } = singlePot;
   const totalCost = (price * orderQty).toFixed(2);
@@ -71,7 +100,7 @@ const SinglePot = (props) => {
             max={quantity}
             onChange={(e) => setOrderQty(e.target.value)}
           />
-          <button type="submit">Add to Cart</button>
+          <button type="submit" onClick={checkLoggedIn}>Add to Cart</button>
           <button id="back" type="button" onClick={() => history.back()}>
             Back
           </button>
