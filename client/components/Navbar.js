@@ -19,13 +19,13 @@ const Navbar = () => {
       <nav>
         <div>
           <Link to="/home">
-            <img src="PotStopLogo.png" />
+            <img src="https://i.gyazo.com/e5e5b6ced15f680ef17ddfff7d1cea61.png" />
           </Link>
-          <Link to="/pots">
-            <img src="Pots.png" />
+          <Link id="shopNav" to="/pots?page=1">
+            <img src="https://i.gyazo.com/e41dfa6d4eddb7eebe27c086f390091f.png" />
           </Link>
           <Link id="cartNav" to="/cart">
-            <img src="Cart.png" />
+            <img src="https://i.gyazo.com/525d1202bf0e698bf40c3fd824e635ef.png" />
           </Link>
         </div>
         {isLoggedIn ? (
@@ -48,9 +48,8 @@ const Navbar = () => {
             )}
           </div>
         ) : (
-          <div id="loginSignup">
+          <div id="login">
             <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </nav>
