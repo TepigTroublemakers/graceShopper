@@ -12,7 +12,20 @@ const Cart = () => {
   useEffect(() => {
     if (localStorage.data) {
       const data = JSON.parse(localStorage.getItem('data'));
-      setCartData(data);
+      const reducedData = {};
+      data.forEach((item) => {
+        if (reducedData[item.id]) {
+          reducedData[item.id].quantity += Number(item.quantity);
+        } else {
+          reducedData[item.id] = {
+            id: item.id,
+            description: item.description,
+            price: item.price,
+            quantity: Number(item.quantity),
+          };
+        }
+      });
+      setCartData(Object.values(reducedData));
     }
   }, []);
 
@@ -23,16 +36,16 @@ const Cart = () => {
   const handleClick = (id) => {
     const cartDataCopy = [...cartData];
     let newCart = cartDataCopy.filter((pot) => {
-      if(pot.id !== id) return pot
-    })
+      if (pot.id !== id) return pot;
+    });
     setCartData(newCart);
-  }
+  };
 
   return (
     <div>
       <div>
         {cartData.map((item) => {
-          console.log(item)
+          console.log(item);
           return (
             <div key={item.id}>
               <h3>{item.description}</h3>
