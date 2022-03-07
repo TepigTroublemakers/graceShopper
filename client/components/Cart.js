@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
-
   const [deleted, setDeleted] = useState(-1);
 
   useEffect(() => {
@@ -19,6 +18,7 @@ const Cart = () => {
             description: item.description,
             price: item.price,
             quantity: Number(item.quantity),
+            quantityOnHand: Number(item.quantityOnHand),
           };
         }
       });
@@ -41,22 +41,28 @@ const Cart = () => {
   if (cartData.length < 1) {
     return (
       <div>
+        <h2>Shopping Cart</h2>
+        <br />
         <h3>Your PotStop cart is empty.</h3>
-        <Link to="/pots?page=1">Continue shopping.</Link>
+        <Link to="/pots?page=1">Continue shopping...</Link>
       </div>
     );
   } else {
     return (
       <div>
+        <h2>Shopping Cart</h2>
+        <br />
         <div>
           {cartData.map((item) => {
-            console.log(item);
             return (
               <div key={item.id}>
                 <h3>{item.description}</h3>
                 <h5>Quantity: {item.quantity}</h5>
                 <h5>Unit Price: ${item.price}</h5>
                 <h5>Extended Price: ${item.price * item.quantity}</h5>
+                <Link to={`/cart/product/${item.id}/editQty`}>
+                  <button>Edit Qty</button>
+                </Link>
                 <button onClick={() => handleClick(item.id)}>
                   Remove Item
                 </button>
@@ -64,6 +70,7 @@ const Cart = () => {
             );
           })}
         </div>
+        <br />
         <br />
         <div>
           <h2>Cart Total:</h2>
