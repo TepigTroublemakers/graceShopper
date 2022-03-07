@@ -1,8 +1,12 @@
 body {
+  position: relative;
   font-family: sans-serif;
-  height: 100vh;
+  min-height: 91.1vh;
+  height: 100%;
+  width: 100%;
   padding: 0;
   margin: 0;
+  padding-bottom: 90px;
 }
 
 a {
@@ -74,22 +78,29 @@ form div {
   font-size: 15px;
 }
 
-.pages:hover {
-  cursor: pointer;
+.current-page {
+  background-color: green;
+  border-style: groove;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  border-radius: 30%;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.pages:active {
-  background-color: green;
+.pages:hover {
+  cursor: pointer;
 }
 
 #currentPage {
   text-align: center;
 }
 
-#loginSignup {
+#login {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
 }
 
 #logout {
@@ -123,13 +134,16 @@ form div {
 #cartNav {
   position: absolute;
   right: 0;
-  top: 30px;
+  bottom: 0;
 }
 
 #usersNav {
   position: absolute;
-  right: 75px;
-  top: 0px;
+  bottom: 0;
+}
+
+#shopNav {
+  align-items: center;
 }
 
 #navbar {
@@ -148,7 +162,7 @@ form div {
 }
 
 #footer {
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   bottom: 0;
@@ -157,6 +171,7 @@ form div {
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 90px;
 }
 
 #footerBottom {
@@ -169,4 +184,39 @@ form div {
 #socials {
   display: flex;
   flex-direction: row;
+}
+
+#logins {
+  display: flex;
+  justify-content: center;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  width: 250px;
+  align-items: center;
+  background-color: silver;
+}
+
+#signups {
+  display: flex;
+  justify-content: center;
+}
+
+#signupForm {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  width: 250px;
+  align-items: center;
+  background-color: silver;
+}
+
+#singlePot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: groove;
 }

@@ -5,6 +5,35 @@ const authenticateAdminToken = require('./adminAuth');
 // GET /api/pots
 potsRouter.get('/', async (req, res, next) => {
   try {
+    if (req.query.page) {
+      const pots = await Pot.findAndCountAll({
+        offset: req.query.page * 10 - 10,
+        limit: 10,
+      });
+      if (req.query.category) {
+        const pots = await Pot.findAndCountAll({
+          offset: req.query.page * 10 - 10,
+          limit: 10,
+          where: {
+            category: req.query.category,
+          },
+        });
+        if (!pots) throw new Error(404);
+        res.json(pots.rows);
+        return;
+      }
+      if (!pots) throw new Error(404);
+      res.json(pots.rows);
+      return;
+    }
+    if (req.query.category) {
+      const pots = await Pot.findAll({
+        where: { category: req.query.category },
+      });
+      if (!pots) throw new Error(404);
+      res.json(pots);
+      return;
+    }
     const pots = await Pot.findAll();
     if (!pots) throw new Error(404);
     res.json(pots);

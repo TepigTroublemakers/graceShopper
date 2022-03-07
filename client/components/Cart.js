@@ -62,10 +62,12 @@ const Cart = () => {
         <h2>Cart Total:</h2>
         <h2>
           $
-          {cartData.reduce((total, item) => {
-            const extPrice = item.price * item.quantity;
-            return total + extPrice;
-          }, 0)}
+          {cartData
+            .reduce((total, item) => {
+              const extPrice = item.price * item.quantity;
+              return total + extPrice;
+            }, 0)
+            .toFixed(2)}
         </h2>
       </div>
     </div>

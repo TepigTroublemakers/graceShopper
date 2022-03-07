@@ -36,10 +36,10 @@ const _addSinglePot = (pot) => {
 };
 
 // Thunk creators
-export const getAllPots = () => {
+export const getAllPots = (location) => {
   return async (dispatch) => {
     try {
-      const { data: allPots } = await axios.get('/api/pots');
+      const { data: allPots } = await axios.get(`/api/pots${location.search}`);
       dispatch(setAllPots(allPots));
     } catch (error) {
       console.error('Error in getAllPots thunk!!');

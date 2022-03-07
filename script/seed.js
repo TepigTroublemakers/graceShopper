@@ -52,7 +52,7 @@ async function seed() {
   const Pot1 = await Pot.create({
     description: 'Light blue bird',
     imageUrl: 'https://i.gyazo.com/ac10b0467068b82f0f6498326c139656.jpg',
-    quantity: 6,
+    quantity: 100,
     price: 15.99,
     category: 'birds',
   });
@@ -254,7 +254,7 @@ async function seed() {
     imageUrl: 'https://i.gyazo.com/b7f5cbb10d22816d6b2c21abe6b0f0de.jpg',
     quantity: 5,
     price: 16.99,
-    category: 'reptiles',
+    category: 'other',
   });
 
   // rob started adding below
@@ -634,7 +634,7 @@ async function seed() {
     imageUrl: 'https://i.gyazo.com/61b3d2fb6c5b5f9a7e69a8c6f6fc3689.jpg',
     quantity: 9,
     price: 21.99,
-    category: 'birds',
+    category: 'other',
   });
 
   const Pot73 = await Pot.create({
