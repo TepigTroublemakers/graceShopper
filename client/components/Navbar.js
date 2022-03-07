@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../store';
@@ -8,6 +8,10 @@ const Navbar = () => {
 
   const isLoggedIn = useSelector((state) => {
     return !!state.auth.id;
+  });
+
+  const username = useSelector((state) => {
+    return state.auth.username;
   });
 
   const role = useSelector((state) => {
@@ -32,18 +36,26 @@ const Navbar = () => {
           <div>
             {role === 'admin' ? (
               <div>
-                <Link id="usersNav" to="/users">
-                  Users
-                </Link>
-                <a id="logout" href="#" onClick={() => dispatch(logout())}>
-                  Logout
-                </a>
+                <div className="dropdown">
+                  <button>{username}</button>
+                  <div className="dropdown-content">
+                    <Link to="/users">Users</Link>
+                    <Link to="/edit">Edit</Link>
+                    <a href="#" onClick={() => dispatch(logout())}>
+                      Logout
+                    </a>
+                  </div>
+                </div>
               </div>
             ) : (
-              <div id="logout">
-                <a href="#" onClick={() => dispatch(logout())}>
-                  Logout
-                </a>
+              <div className="dropdown">
+                <button>{username}</button>
+                <div className="dropdown-content">
+                  <Link to="/edit">Edit</Link>
+                  <a href="#" onClick={() => dispatch(logout())}>
+                    Logout
+                  </a>
+                </div>
               </div>
             )}
           </div>

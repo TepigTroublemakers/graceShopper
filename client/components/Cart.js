@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-// To Do:
-// Remove items from cart
-// Change quantities
-
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
-
-  const [deleted, setDeleted] = useState(-1);
 
   useEffect(() => {
     if (localStorage.data) {
@@ -45,13 +39,14 @@ const Cart = () => {
     <div>
       <div>
         {cartData.map((item) => {
-          console.log(item);
           return (
             <div key={item.id}>
               <h3>{item.description}</h3>
               <h5>Quantity: {item.quantity}</h5>
               <h5>Unit Price: ${item.price}</h5>
-              <h5>Extended Price: ${item.price * item.quantity}</h5>
+              <h5>
+                Extended Price: ${(item.price * item.quantity).toFixed(2)}
+              </h5>
               <button onClick={() => handleClick(item.id)}>Remove Item</button>
             </div>
           );
