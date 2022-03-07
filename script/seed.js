@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Pot, Payment },
+  models: { User, Pot, Payment, Cart },
 } = require('../server/db');
 
 /**
@@ -782,6 +782,8 @@ async function seed() {
   //   category: 'other',
   // });
 
+  const Cart1 = await Cart.create({})
+
   // rob added above ^^
 
   const Payment1 = await Payment.create({
@@ -792,10 +794,17 @@ async function seed() {
     zipcode: 11111,
   });
 
-  await Customer1.addPot(Pot1);
-  await Customer1.addPot(Pot7);
-  await Customer1.addPot(Pot12);
-  await Customer1.addPot(Pot24);
+  await Customer1.setCart(Cart1)
+
+  await Cart1.addPot(Pot1, {
+    through: {
+      quantity: 2,
+    },
+  });
+
+  await Cart1.addPot(Pot7);
+  await Cart1.addPot(Pot12);
+  await Cart1.addPot(Pot24);
   await Customer1.addPayment(Payment1);
   console.log(`seeded successfully`);
 }
