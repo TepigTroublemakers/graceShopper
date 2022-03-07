@@ -22,6 +22,7 @@ const Home = () => {
         </div>
       ) : (
         <div id="home">
+          <h3>Welcome</h3>
           <img
             src="https://i.gyazo.com/8463f304aeeef4ab9922c833251db330.jpg"
             style={{ width: '42%' }}
