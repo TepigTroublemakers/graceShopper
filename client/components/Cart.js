@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-// To Do:
-// Remove items from cart
-// Change quantities
-
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
 
