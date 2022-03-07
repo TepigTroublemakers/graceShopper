@@ -800,7 +800,6 @@ async function seed() {
     through: {
       quantity: 2,
     },
-    itemTotal: this.quantity
   });
 
   await Cart1.addPot(Pot7);
