@@ -4,15 +4,15 @@ PotStop is a one-stop shop for your houseplant's next home.
 
 ## Setup
 
-* `npm install`
-* Create two postgres databases:
+- `npm install`
+- Create two postgres databases:
 
 ```
 createdb pot-stop
 createdb pot-stop-test
 ```
 
-* By default, running `npm test` will use your test database, while
+- By default, running `npm test` will use your test database, while
   regular development uses development database
 
 ## Start
@@ -25,5 +25,5 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 
 ## Resources
 
-- [Deployed App (Heroku)](https://pot-stop.herokuapp.com/pots)
+- [Deployed App (Heroku)](https://pot-stop.herokuapp.com/)
 - [Google Drive](https://drive.google.com/drive/u/0/folders/1Nz5UA9kb8UkjN5oHXTRXtVgce6fdLkXr)
