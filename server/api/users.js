@@ -30,7 +30,10 @@ router.get('/', authenticateAdminToken, async (req, res, next) => {
 router.put('/', authenticateToken, async (req, res, next) => {
   try {
     const users = await User.findByPk(req.user.id);
-    res.json(await users.update(req.body));
+    const { username, firstName, lastName, email, address } = req.body;
+    res.json(
+      await users.update({ username, firstName, lastName, email, address })
+    );
   } catch (err) {
     next(err);
   }
