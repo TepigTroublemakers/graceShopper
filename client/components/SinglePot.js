@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSinglePot } from '../store/singlePot';
 
-const SinglePot = (props) => {
+const SinglePot = () => {
   const { singlePot } = useSelector((state) => {
     return {
       singlePot: state.singlePot,

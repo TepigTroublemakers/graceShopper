@@ -9,7 +9,9 @@ import AllPots from './components/AllPots';
 import AllUsers from './components/AllUsers';
 import SinglePot from './components/SinglePot';
 import Cart from './components/Cart';
+import EditAccount from './components/EditAccount';
 import EditCartQty from './components/EditCartQty';
+
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ const Routes = () => {
           <Route exact path="/cart" component={Cart} />
           <Route path="/cart/product/:id/editQty" component={EditCartQty} />
           <Route path="/home" component={Home} />
+          <Route path="/edit" component={EditAccount} />
           <Redirect to="/home" />
         </Switch>
       ) : (
@@ -43,7 +46,7 @@ const Routes = () => {
           <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/" exact component={Home} />
+          <Route path="/" component={Home} />
         </Switch>
       )}
     </div>

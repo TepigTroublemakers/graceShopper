@@ -59,7 +59,7 @@ const Cart = () => {
                 <h3>{item.description}</h3>
                 <h5>Quantity: {item.quantity}</h5>
                 <h5>Unit Price: ${item.price}</h5>
-                <h5>Extended Price: ${item.price * item.quantity}</h5>
+                <h5>Extended Price: ${(item.price * item.quantity).toFixed(2)}</h5>
                 <Link to={`/cart/product/${item.id}/editQty`}>
                   <button>Edit Qty</button>
                 </Link>
