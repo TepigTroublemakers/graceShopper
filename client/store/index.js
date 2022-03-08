@@ -6,7 +6,6 @@ import auth from './auth';
 import pots from './pots';
 import users from './users';
 import singlePot from './singlePot';
-import singleUser from './editUser';
 import localCart from './localCart';
 
 const reducer = combineReducers({
@@ -14,7 +13,6 @@ const reducer = combineReducers({
   pots,
   singlePot,
   users,
-  singleUser,
   localCart,
 });
 const middleware = composeWithDevTools(

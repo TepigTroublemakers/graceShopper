@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser } from '../store/editUser';
+import { updateMe } from '../store/auth';
 
 const EditAccount = () => {
   const dispatch = useDispatch();
@@ -19,23 +19,22 @@ const EditAccount = () => {
     setChangeLN(auth.lastName);
   }, []);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(
+      updateMe({
+        username: changeUsername,
+        email: changeEmail,
+        firstName: changeFN,
+        lastName: changeLN,
+        address: changeAddress,
+      })
+    );
+  }
+
   return (
     <div id="editUser">
-      <form
-        id="editUserForm"
-        onSubmit={(e) => {
-          e.preventDefault();
-          dispatch(
-            updateUser({
-              username: changeUsername,
-              email: changeEmail,
-              firstName: changeFN,
-              lastName: changeLN,
-              address: changeAddress,
-            })
-          );
-        }}
-      >
+      <form id="editUserForm" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">
             <small>First Name</small>
