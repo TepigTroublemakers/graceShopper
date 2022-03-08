@@ -2,9 +2,8 @@ const db = require('./db');
 const User = require('./models/User');
 const Pot = require('./models/Pot');
 const Payment = require('./models/Payment');
-const cartPot = require('./models/Cart')
-const Cart = db.define('cart', { })
-
+const cartPot = require('./models/Cart');
+const Cart = db.define('cart', {});
 
 User.hasMany(Payment);
 Payment.belongsTo(User);
@@ -25,7 +24,7 @@ module.exports = {
     User,
     Pot,
     Payment,
-    cartPot
+    cartPot,
+    Cart,
   },
 };
-
