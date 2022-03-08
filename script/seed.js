@@ -798,7 +798,7 @@ async function seed() {
     category: 'tepig',
   });
 
-  const Cart1 = await Cart.create({})
+  const Cart1 = await Cart.create({});
 
   // rob added above ^^
 
@@ -810,17 +810,8 @@ async function seed() {
     zipcode: 11111,
   });
 
-  await Customer1.setCart(Cart1)
+  await Customer1.setCart(Cart1);
 
-  await Cart1.addPot(Pot1, {
-    through: {
-      quantity: 2,
-    },
-  });
-
-  await Cart1.addPot(Pot7);
-  await Cart1.addPot(Pot12);
-  await Cart1.addPot(Pot24);
   await Customer1.addPayment(Payment1);
   console.log(`seeded successfully`);
 }
