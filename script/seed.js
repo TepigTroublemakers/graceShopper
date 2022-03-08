@@ -811,6 +811,9 @@ async function seed() {
   });
 
   await Customer1.setCart(Cart1);
+  await Cart1.addPot(Pot91);
+  await Cart1.addPot(Pot80);
+  await Cart1.addPot(Pot60);
 
   await Customer1.addPayment(Payment1);
   console.log(`seeded successfully`);
