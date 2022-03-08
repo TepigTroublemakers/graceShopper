@@ -223,8 +223,10 @@ form div {
 
 .dropdown {
   position: absolute;
-  top: 50px;
-  right: 50px;
+  /* top: 50px;
+  right: 50px; */
+  top: 15px;
+  right: 15px;
 }
 
 .dropdown-content {
@@ -232,6 +234,8 @@ form div {
   position: absolute;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   background-color: white;
+  right: 0;
+  left: auto;
 }
 
 .dropdown:hover .dropdown-content {
