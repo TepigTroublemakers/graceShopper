@@ -94,11 +94,7 @@ const Cart = () => {
         <br />
         <br />
         <div>
-          {cartData.length === 1 ? (
-            <h2>Cart Subtotal ({cartData.length} item):</h2>
-          ) : (
-            <h2>Cart Subtotal ({cartData.length} items):</h2>
-          )}
+          <h2>Cart Subtotal:</h2>
           <h2>
             $
             {cartData
