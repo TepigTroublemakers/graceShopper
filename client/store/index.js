@@ -6,7 +6,8 @@ import auth from './auth';
 import pots from './pots';
 import users from './users';
 import singlePot from './singlePot';
-import cart from './cart';
+import cartSingleItem from './cartSingleItem';
+import cartAllItems from './cartAllItems';
 import localCart from './localCart';
 
 const reducer = combineReducers({
@@ -15,7 +16,8 @@ const reducer = combineReducers({
   singlePot,
   users,
   localCart,
-  cart
+  cartSingleItem,
+  cartAllItems,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

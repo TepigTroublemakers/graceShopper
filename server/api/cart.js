@@ -12,8 +12,10 @@ router.get('/', authenticateToken, async (req, res, next) => {
       where: {
         userId: req.user.id,
       },
+      include: {
+        model: Pot,
+      },
     });
-
     res.json(userCart);
   } catch (err) {
     next(err);
