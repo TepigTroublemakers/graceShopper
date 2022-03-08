@@ -19,6 +19,18 @@ export const me = () => async (dispatch) => {
   }
 };
 
+export const updateMe = (auth) => async (dispatch) => {
+  const token = window.localStorage.getItem(TOKEN);
+  if (token) {
+    const res = await axios.put('/auth/me', auth, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return dispatch(setAuth(res.data));
+  }
+};
+
 export const authenticate =
   (username, password, method) => async (dispatch) => {
     try {

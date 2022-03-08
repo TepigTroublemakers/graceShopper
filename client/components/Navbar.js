@@ -10,9 +10,25 @@ const Navbar = () => {
     return !!state.auth.id;
   });
 
-  const role = useSelector((state) => {
-    return state.auth.role;
+  const { username, role } = useSelector((state) => {
+    return state.auth;
   });
+
+  const localCart = useSelector((state) => {
+    return state.localCart;
+  });
+
+  function countCart() {
+    if (localCart) {
+      let count = 0;
+      for (let i = 0; i < localCart.length; i++) {
+        count += Number(localCart[i].quantity);
+      }
+      return count;
+    } else {
+      return 0;
+    }
+  }
 
   return (
     <div id="navbar">
@@ -25,6 +41,7 @@ const Navbar = () => {
             <img src="https://i.gyazo.com/e41dfa6d4eddb7eebe27c086f390091f.png" />
           </Link>
           <Link id="cartNav" to="/cart">
+            {countCart() !== 0 ? <div id="countCart">{countCart()}</div> : null}
             <img src="https://i.gyazo.com/525d1202bf0e698bf40c3fd824e635ef.png" />
           </Link>
         </div>
@@ -32,18 +49,26 @@ const Navbar = () => {
           <div>
             {role === 'admin' ? (
               <div>
-                <Link id="usersNav" to="/users">
-                  Users
-                </Link>
-                <a id="logout" href="#" onClick={() => dispatch(logout())}>
-                  Logout
-                </a>
+                <div className="dropdown">
+                  <button>{username}</button>
+                  <div className="dropdown-content">
+                    <Link to="/users">Users</Link>
+                    <Link to="/edit">Edit</Link>
+                    <a href="#" onClick={() => dispatch(logout())}>
+                      Logout
+                    </a>
+                  </div>
+                </div>
               </div>
             ) : (
-              <div id="logout">
-                <a href="#" onClick={() => dispatch(logout())}>
-                  Logout
-                </a>
+              <div className="dropdown">
+                <button>{username}</button>
+                <div className="dropdown-content">
+                  <Link to="/edit">Edit</Link>
+                  <a href="#" onClick={() => dispatch(logout())}>
+                    Logout
+                  </a>
+                </div>
               </div>
             )}
           </div>

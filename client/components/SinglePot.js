@@ -3,22 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToDbCart } from '../store/cart';
 import { getSinglePot } from '../store/singlePot';
+import { getLocalCart } from '../store/localCart';
 
-const SinglePot = (props) => {
+const SinglePot = () => {
   const { singlePot } = useSelector((state) => {
     return {
       singlePot: state.singlePot,
     };
   });
-
+  
   const isLoggedIn = useSelector((state) => {
     return !!state.auth.id;
   });
   const userId = useSelector((state) => {
     return state.auth.id;
   })
-
-  const [orderQty, setOrderQty] = useState(0);
+  const [orderQty, setOrderQty] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
   const [userSubmit, setUserSubmit] = useState(false);
   const [cartData, setCartData] = useState(() => {
@@ -40,10 +40,11 @@ const SinglePot = (props) => {
 
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(cartData));
+    dispatch(getLocalCart(cartData));
   }, [cartData]);
 
   useEffect(() => {
-    console.log("Dispatching to cart store")
+    //console.log("Dispatching to cart store")
     dispatch(addToDbCart(potId, orderQty))
   }, [userSubmit])
 
@@ -51,7 +52,7 @@ const SinglePot = (props) => {
     e.preventDefault();
     //need to check if user is logged in, if not, add to local cart, if so, dispatch thunk creator to add to cart
     if(!isLoggedIn){
-      console.log("adding to local cart")
+      //console.log("adding to local cart")
       setCartData([
       ...cartData,
       {
@@ -59,6 +60,7 @@ const SinglePot = (props) => {
         description: description,
         quantity: orderQty,
         price: price,
+        quantityOnHand: quantity,
       },
     ]);
 
@@ -67,7 +69,7 @@ const SinglePot = (props) => {
   };
 
   const checkLoggedIn = () => {
-    console.log("checking login")
+    //console.log("checking login")
     if(isLoggedIn){
       setUserSubmit(true);
     }else{
@@ -96,7 +98,7 @@ const SinglePot = (props) => {
             id="qty"
             name="quantity"
             value={orderQty}
-            min={0}
+            min={1}
             max={quantity}
             onChange={(e) => setOrderQty(e.target.value)}
           />
