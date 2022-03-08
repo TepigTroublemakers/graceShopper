@@ -11,7 +11,7 @@ import SinglePot from './components/SinglePot';
 import Cart from './components/Cart';
 import EditAccount from './components/EditAccount';
 import EditCartQty from './components/EditCartQty';
-
+import Checkout from './components/Checkout';
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -35,6 +35,7 @@ const Routes = () => {
           <Route path="/cart/product/:id/editQty" component={EditCartQty} />
           <Route path="/home" component={Home} />
           <Route path="/edit" component={EditAccount} />
+          <Route path="/checkout" component={Checkout} />
           <Redirect to="/home" />
         </Switch>
       ) : (
@@ -46,6 +47,7 @@ const Routes = () => {
           <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/" component={Home} />
         </Switch>
       )}
