@@ -12,8 +12,11 @@ async function authenticateCustomerToken(req, res, next) {
 
     const { id } = jwt.verify(token, process.env.JWT);
     const user = await User.findByPk(id);
-    req.user = user;
-    next();
+    if (user.role === 'customer') {
+      next();
+    } else {
+      res.sendStatus(403);
+    }
   } catch (err) {
     next(err);
   }

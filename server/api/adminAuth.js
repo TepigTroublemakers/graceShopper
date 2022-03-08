@@ -11,7 +11,6 @@ async function authenticateAdminToken(req, res, next) {
     const { id } = jwt.verify(token, process.env.JWT);
     const user = await User.findByPk(id);
     if(user.role === "admin"){
-      req.user = user;
       next()
     }else{
       res.sendStatus(403);
