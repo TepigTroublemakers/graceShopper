@@ -57,6 +57,7 @@ const SinglePot = () => {
       ...cartData,
       {
         id: potId,
+        imageUrl: imageUrl,
         description: description,
         quantity: orderQty,
         price: price,
