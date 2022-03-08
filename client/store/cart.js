@@ -6,6 +6,7 @@ const TOKEN = 'token';
 // Action types
 const GET_CART = 'GET_CART';
 const ADD_POT = 'ADD_POT';
+const DELETE_POT = 'DELETE_POT';
 
 // Action creators
 const getCart = (cart) => {
@@ -21,6 +22,13 @@ const addPot = (cart) => {
     cart,
   };
 };
+
+const _deletePot = (cart) => {
+  return {
+    type: DELETE_POT,
+    cart,
+  }
+}
 
 // Thunk creators
 export const getCartFromDB = () => {
@@ -63,11 +71,26 @@ export const addToDbCart = (potId, quantity) => {
   };
 };
 
+export const deletePot = (potId) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      if (token) {
+        const { data: deletedPotCart } = await axios.put(`/api/cart/${potId}`);
+        dispatch(_deletePot(deletedPotCart));
+      }
+    } catch (error) {
+      console.error('Error in deletePot thunk!!');
+    }
+  };
+};
+
+
 // Initial state
 const initialState = {};
 
 // Reducer
-const cartSingleItem = (state = initialState, action) => {
+const cart = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART: {
       return action.cart;
@@ -75,9 +98,12 @@ const cartSingleItem = (state = initialState, action) => {
     case ADD_POT: {
       return action.cart;
     }
+    case DELETE_POT: {
+      return action.cart;
+    }
     default:
       return state;
   }
 };
 
-export default cartSingleItem;
+export default cart;

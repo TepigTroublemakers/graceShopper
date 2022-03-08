@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addToDbCart } from '../store/cartSingleItem';
+import { addToDbCart } from '../store/cart';
 import { getSinglePot } from '../store/singlePot';
 import { getLocalCart } from '../store/localCart';
 
