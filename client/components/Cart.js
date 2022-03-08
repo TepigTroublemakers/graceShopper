@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getLocalCart } from '../store/localCart';
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const [cartData, setCartData] = useState([]);
-  const [deleted, setDeleted] = useState(-1);
 
   useEffect(() => {
     if (localStorage.data) {
@@ -28,6 +30,7 @@ const Cart = () => {
 
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(cartData));
+    dispatch(getLocalCart(cartData));
   }, [cartData]);
 
   const handleClick = (id) => {
@@ -59,7 +62,9 @@ const Cart = () => {
                 <h3>{item.description}</h3>
                 <h5>Quantity: {item.quantity}</h5>
                 <h5>Unit Price: ${item.price}</h5>
-                <h5>Extended Price: ${(item.price * item.quantity).toFixed(2)}</h5>
+                <h5>
+                  Extended Price: ${(item.price * item.quantity).toFixed(2)}
+                </h5>
                 <Link to={`/cart/product/${item.id}/editQty`}>
                   <button>Edit Qty</button>
                 </Link>

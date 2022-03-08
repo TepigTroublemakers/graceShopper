@@ -223,8 +223,10 @@ form div {
 
 .dropdown {
   position: absolute;
-  top: 50px;
-  right: 50px;
+  /* top: 50px;
+  right: 50px; */
+  top: 15px;
+  right: 15px;
 }
 
 .dropdown-content {
@@ -232,6 +234,8 @@ form div {
   position: absolute;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   background-color: white;
+  right: 0;
+  left: auto;
 }
 
 .dropdown:hover .dropdown-content {
@@ -252,14 +256,37 @@ form div {
 #editUser {
   display: flex;
   justify-content: center;
+}
+
+#submitEdit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#editUserForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-style: groove;
   background-color: silver;
   width: 250px;
   align-items: center;
 }
 
-#submitEdit {
+#countCart {
   display: flex;
+  border-style: solid;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  background-color: red;
+  border-color: red;
+  color: white;
   justify-content: center;
-  align-items: center;
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  z-index: 20px;
 }

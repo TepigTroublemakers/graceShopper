@@ -42,4 +42,16 @@ router.get('/me', async (req, res, next) => {
   }
 });
 
+router.put('/me', async (req, res, next) => {
+  try {
+    const users = await User.findByToken(req.headers.authorization);
+    const { username, firstName, lastName, email, address } = req.body;
+    res.send(
+      await users.update({ username, firstName, lastName, email, address })
+    );
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 module.exports = router;
