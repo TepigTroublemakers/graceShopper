@@ -10,7 +10,7 @@ const SinglePot = () => {
     };
   });
 
-  const [orderQty, setOrderQty] = useState(0);
+  const [orderQty, setOrderQty] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
   const [cartData, setCartData] = useState(() => {
     const localStorageData = JSON.parse(localStorage.getItem('data'));
@@ -41,6 +41,7 @@ const SinglePot = () => {
         description: description,
         quantity: orderQty,
         price: price,
+        quantityOnHand: quantity,
       },
     ]);
     setAddedToCart(true);
@@ -67,7 +68,7 @@ const SinglePot = () => {
             id="qty"
             name="quantity"
             value={orderQty}
-            min={0}
+            min={1}
             max={quantity}
             onChange={(e) => setOrderQty(e.target.value)}
           />
