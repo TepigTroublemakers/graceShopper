@@ -11,13 +11,13 @@ const SinglePot = () => {
       singlePot: state.singlePot,
     };
   });
-  
+
   const isLoggedIn = useSelector((state) => {
     return !!state.auth.id;
   });
   const userId = useSelector((state) => {
     return state.auth.id;
-  })
+  });
   const [orderQty, setOrderQty] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
   const [userSubmit, setUserSubmit] = useState(false);
@@ -45,38 +45,37 @@ const SinglePot = () => {
 
   useEffect(() => {
     //console.log("Dispatching to cart store")
-    dispatch(addToDbCart(potId, orderQty))
-  }, [userSubmit])
+    dispatch(addToDbCart(potId, orderQty));
+  }, [userSubmit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     //need to check if user is logged in, if not, add to local cart, if so, dispatch thunk creator to add to cart
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
       //console.log("adding to local cart")
       setCartData([
-      ...cartData,
-      {
-        id: potId,
-        imageUrl: imageUrl,
-        description: description,
-        quantity: orderQty,
-        price: price,
-        quantityOnHand: quantity,
-      },
-    ]);
-
+        ...cartData,
+        {
+          id: potId,
+          imageUrl: imageUrl,
+          description: description,
+          quantity: orderQty,
+          price: price,
+          quantityOnHand: quantity,
+        },
+      ]);
     }
     setAddedToCart(true);
   };
 
   const checkLoggedIn = () => {
     //console.log("checking login")
-    if(isLoggedIn){
+    if (isLoggedIn) {
       setUserSubmit(true);
-    }else{
+    } else {
       setUserSubmit(false);
     }
-  }
+  };
 
   const { description, imageUrl, quantity, price, category } = singlePot;
   const totalCost = (price * orderQty).toFixed(2);
@@ -103,7 +102,9 @@ const SinglePot = () => {
             max={quantity}
             onChange={(e) => setOrderQty(e.target.value)}
           />
-          <button type="submit" onClick={checkLoggedIn}>Add to Cart</button>
+          <button type="submit" onClick={checkLoggedIn}>
+            Add to Cart
+          </button>
           <button id="back" type="button" onClick={() => history.back()}>
             Back
           </button>
