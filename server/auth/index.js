@@ -2,11 +2,15 @@ const router = require('express').Router();
 const {
   models: { User },
 } = require('../db');
-module.exports = router;
 
 router.post('/login', async (req, res, next) => {
   try {
-    res.send({ token: await User.authenticate(req.body) });
+    res.send({
+      token: await User.authenticate({
+        username: req.body.username,
+        password: req.body.password,
+      }),
+    });
   } catch (err) {
     next(err);
   }
@@ -37,3 +41,5 @@ router.get('/me', async (req, res, next) => {
     next(ex);
   }
 });
+
+module.exports = router;

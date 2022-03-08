@@ -18,6 +18,12 @@ const User = db.define('user', {
     type: Sequelize.ENUM('customer', 'admin'),
     defaultValue: 'customer',
   },
+  firstName: {
+    type: Sequelize.STRING,
+  },
+  lastName: {
+    type: Sequelize.STRING,
+  },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
