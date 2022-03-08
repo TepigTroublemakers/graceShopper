@@ -19,11 +19,10 @@ const EditAccount = () => {
     setChangeLN(auth.lastName);
   }, []);
 
-  console.log(auth);
-
   return (
     <div id="editUser">
       <form
+        id="editUserForm"
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(
@@ -37,39 +36,60 @@ const EditAccount = () => {
           );
         }}
       >
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          name="firstName"
-          value={changeFN || ''}
-          onChange={(e) => setChangeFN(e.target.value)}
-        />
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          name="LastName"
-          value={changeLN || ''}
-          onChange={(e) => setChangeLN(e.target.value)}
-        />
-        <label htmlFor="username">Username:</label>
-        <input
-          name="username"
-          value={changeUsername || ''}
-          onChange={(e) => setChangeUsername(e.target.value)}
-        />
-        <label htmlFor="email">Email:</label>
-        <input
-          name="email"
-          value={changeEmail || ''}
-          onChange={(e) => setChangeEmail(e.target.value)}
-        />
-        <label htmlFor="address">Address:</label>
-        <input
-          name="address"
-          value={changeAddress || ''}
-          onChange={(e) => setChangeAddress(e.target.value)}
-        />
-        <button id="submitEdit" type="submit">
-          Submit
-        </button>
+        <div>
+          <label htmlFor="firstName">
+            <small>First Name</small>
+          </label>
+          <input
+            name="firstName"
+            value={changeFN || ''}
+            onChange={(e) => setChangeFN(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">
+            <small>Last Name</small>
+          </label>
+          <input
+            name="LastName"
+            value={changeLN || ''}
+            onChange={(e) => setChangeLN(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="username">
+            <small>Username</small>
+          </label>
+          <input
+            name="username"
+            value={changeUsername || ''}
+            onChange={(e) => setChangeUsername(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input
+            name="email"
+            value={changeEmail || ''}
+            onChange={(e) => setChangeEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="address">
+            <small>Address</small>
+          </label>
+          <input
+            name="address"
+            value={changeAddress || ''}
+            onChange={(e) => setChangeAddress(e.target.value)}
+          />
+        </div>
+        <div id="submitEdit">
+          <button type="submit">Submit</button>
+          <button onClick={() => history.back()}>Back</button>
+        </div>
       </form>
     </div>
   );

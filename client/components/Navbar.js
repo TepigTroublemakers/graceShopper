@@ -10,13 +10,25 @@ const Navbar = () => {
     return !!state.auth.id;
   });
 
-  const username = useSelector((state) => {
-    return state.auth.username;
+  const { username, role } = useSelector((state) => {
+    return state.auth;
   });
 
-  const role = useSelector((state) => {
-    return state.auth.role;
+  const localCart = useSelector((state) => {
+    return state.localCart;
   });
+
+  function countCart() {
+    if (localCart) {
+      let count = 0;
+      for (let i = 0; i < localCart.length; i++) {
+        count += Number(localCart[i].quantity);
+      }
+      return count;
+    } else {
+      return 0;
+    }
+  }
 
   return (
     <div id="navbar">
@@ -29,6 +41,7 @@ const Navbar = () => {
             <img src="https://i.gyazo.com/e41dfa6d4eddb7eebe27c086f390091f.png" />
           </Link>
           <Link id="cartNav" to="/cart">
+            {countCart() !== 0 ? <div id="countCart">{countCart()}</div> : null}
             <img src="https://i.gyazo.com/525d1202bf0e698bf40c3fd824e635ef.png" />
           </Link>
         </div>

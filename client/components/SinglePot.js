@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSinglePot } from '../store/singlePot';
+import { getLocalCart } from '../store/localCart';
 
 const SinglePot = () => {
   const { singlePot } = useSelector((state) => {
@@ -30,6 +31,7 @@ const SinglePot = () => {
 
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(cartData));
+    dispatch(getLocalCart(cartData));
   }, [cartData]);
 
   const handleSubmit = (e) => {

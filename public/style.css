@@ -252,14 +252,37 @@ form div {
 #editUser {
   display: flex;
   justify-content: center;
+}
+
+#submitEdit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#editUserForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-style: groove;
   background-color: silver;
   width: 250px;
   align-items: center;
 }
 
-#submitEdit {
+#countCart {
   display: flex;
+  border-style: solid;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  background-color: red;
+  border-color: red;
+  color: white;
   justify-content: center;
-  align-items: center;
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  z-index: 20px;
 }
