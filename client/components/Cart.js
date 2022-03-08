@@ -46,7 +46,7 @@ const Cart = () => {
 
   if (cartData.length < 1) {
     return (
-      <div>
+      <div className="cartContainer">
         <h2>Shopping Cart</h2>
         <br />
         <h3>Your PotStop cart is empty.</h3>
@@ -55,7 +55,7 @@ const Cart = () => {
     );
   } else {
     return (
-      <div>
+      <div className="cartContainer">
         <h2>Shopping Cart</h2>
         <br />
         <div>
@@ -80,7 +80,10 @@ const Cart = () => {
                   <Link to={`/pots/${item.id}`}>
                     <button className="cartBtn">View Item</button>
                   </Link>
-                  <button className="cartBtn" onClick={() => handleClick(item.id)}>
+                  <button
+                    className="cartBtn"
+                    onClick={() => handleClick(item.id)}
+                  >
                     Remove Item
                   </button>
                 </div>
@@ -91,7 +94,11 @@ const Cart = () => {
         <br />
         <br />
         <div>
-          <h2>Cart Subtotal:</h2>
+          {cartData.length === 1 ? (
+            <h2>Cart Subtotal ({cartData.length} item):</h2>
+          ) : (
+            <h2>Cart Subtotal ({cartData.length} items):</h2>
+          )}
           <h2>
             $
             {cartData
