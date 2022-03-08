@@ -20,6 +20,8 @@ const EditCartQty = () => {
   }, []);
 
   useEffect(() => {
+    // o: you are doing this in multiple places... makes sense to make it into
+    //  a function
     localStorage.setItem('data', JSON.stringify(cartData));
   }, [cartData]);
 

@@ -25,6 +25,7 @@ router.get('/', authenticateToken, async (req, res, next) => {
 
 // POST /api/cart/:potId
 //add pot corresponding to potId to cart belonging to current user, must pass in quantity in body
+// o: PUT /api/cart would be more RESTful with pot info in the req.body
 router.post('/:potId', authenticateToken, async (req, res, next) => {
   try {
     const quantity = parseInt(req.body.quantity);

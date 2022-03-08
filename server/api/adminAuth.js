@@ -3,6 +3,7 @@ const {
 } = require('../db');
 const jwt = require('jsonwebtoken');
 
+// o: you could have gotten away with putting this into a middlwares module
 async function authenticateAdminToken(req, res, next) {
   try {
     const token = req.headers['authorization'];

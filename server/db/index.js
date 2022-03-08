@@ -12,6 +12,8 @@ Cart.belongsToMany(Pot, { through: cartPot });
 Pot.belongsToMany(Cart, { through: cartPot });
 
 Cart.belongsTo(User);
+
+// o: not sure this will work correctly
 User.hasOne(Cart);
 
 // Order.belongsToMany(Pot)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPots } from '../store/pots';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const AllPots = (props) => {
@@ -15,15 +15,17 @@ const AllPots = (props) => {
   });
 
   const dispatch = useDispatch();
-
+  
   const pageNumbers = [];
   for (let i = 1; i <= totalPage; i++) {
     pageNumbers.push(i);
   }
 
+  // o: this is a magic number, create a constant to improve clarity
   const filterType = props.location.search.substring(17);
 
   useEffect(() => {
+    // o: look into using useHistory and useLocation hooks to shorten some of this code
     let currentPageQuery = props.location.search.split('=')[1].split('&')[0];
     if (props.location.search === '' || currentPageQuery == 0) {
       props.history.push('/pots?page=1');
@@ -66,6 +68,7 @@ const AllPots = (props) => {
         <br></br>
         <div>
           Category
+          {/* o: might be better to calculate this above and render here */}
           {['', 'birds', 'owls', 'reptiles', 'mammals', 'wacky', 'combos', 'tepig', 'classics'].map(
             (category, idx) => {
               return (
@@ -87,6 +90,7 @@ const AllPots = (props) => {
       </div>
       <div>
         <div id="allPotsRender">
+          {/* o: might be better to calculate this above and render here */}
           {pots
             .filter((pot) => {
               if (filter === '') {

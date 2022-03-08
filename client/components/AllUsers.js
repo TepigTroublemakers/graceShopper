@@ -14,9 +14,13 @@ const AllUsers = () => {
   useEffect(() => {
     dispatch(getUsersFromDb());
   }, []);
+
+  // o: const admins = users.filter(user => user.role === "admin") will work
   const admins = users.filter((user) => {
     if(user.role === 'admin') return user
   })
+  
+  // o: const admins = users.filter(user => user.role === "customer") will work
   const customers = users.filter((user) => {
     if(user.role === 'customer') return user
   })

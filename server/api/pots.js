@@ -18,10 +18,13 @@ potsRouter.get('/', async (req, res, next) => {
             category: req.query.category,
           },
         });
+        // o: you can use the next({ status: 404, message: "Pot not found" })
+        //  which is much cleaner and more descriptive
         if (!pots) throw new Error(404);
         res.json(pots.rows);
         return;
       }
+      // o: see message above regarding error handling
       if (!pots) throw new Error(404);
       res.json(pots.rows);
       return;
@@ -30,11 +33,13 @@ potsRouter.get('/', async (req, res, next) => {
       const pots = await Pot.findAll({
         where: { category: req.query.category },
       });
+      // o: see message above regarding error handling
       if (!pots) throw new Error(404);
       res.json(pots);
       return;
     }
     const pots = await Pot.findAll();
+    // o: see message above regarding error handling
     if (!pots) throw new Error(404);
     res.json(pots);
   } catch (err) {
@@ -46,6 +51,7 @@ potsRouter.get('/', async (req, res, next) => {
 potsRouter.get('/:potId', async (req, res, next) => {
   try {
     const pot = await Pot.findByPk(req.params.potId);
+    // o: see message above regarding error handling
     if (!pot) throw new Error(404);
     res.json(pot);
   } catch (err) {
@@ -74,6 +80,7 @@ potsRouter.post('/', authenticateAdminToken, async (req, res, next) => {
 potsRouter.delete('/:potId', authenticateAdminToken, async (req, res, next) => {
   try {
     const potToDelete = await Pot.findByPk(req.params.potId);
+    // o: see message above regarding error handling
     if (!potToDelete) throw new Error(404);
     await Pot.destroy({
       where: {
@@ -91,6 +98,7 @@ potsRouter.put('/:potId', authenticateAdminToken, async (req, res, next) => {
   try {
     const { description, imageUrl, quantity, price, category } = req.body;
     const potToUpdate = await Pot.findByPk(req.params.potId);
+    // o: see message above regarding error handling
     if (!potToUpdate) throw new Error(404);
     const updatedPot = await potToUpdate.update({
       description,

@@ -11,6 +11,7 @@ const Cart = () => {
     if (localStorage.data) {
       const data = JSON.parse(localStorage.getItem('data'));
       const reducedData = {};
+      
       data.forEach((item) => {
         if (reducedData[item.id]) {
           reducedData[item.id].quantity += Number(item.quantity);
@@ -30,12 +31,16 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
+    // o: you are doing this in multiple places... makes sense to make it into
+    //  a function
     localStorage.setItem('data', JSON.stringify(cartData));
     dispatch(getLocalCart(cartData));
   }, [cartData]);
 
   const handleClick = (id) => {
     const cartDataCopy = [...cartData];
+
+    // let newCart = cartDataCopy.filter(pot => pot.id !== id) will work
     let newCart = cartDataCopy.filter((pot) => {
       if (pot.id !== id) return pot;
     });
@@ -97,6 +102,7 @@ const Cart = () => {
           <h2>Cart Subtotal:</h2>
           <h2>
             $
+            {/* o: might be better to calculate this above and render here */}
             {cartData
               .reduce((total, item) => {
                 const extPrice = item.price * item.quantity;
