@@ -37,7 +37,9 @@ const Pot = db.define('pot', {
       'birds',
       'mammals',
       'wacky',
-      'other'
+      'combos',
+      'tepig',
+      'classics',
     ),
     allowNull: false,
     validate: {

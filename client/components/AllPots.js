@@ -66,7 +66,7 @@ const AllPots = (props) => {
         <br></br>
         <div>
           Category
-          {['', 'birds', 'owls', 'reptiles', 'mammals', 'wacky', 'other'].map(
+          {['', 'birds', 'owls', 'reptiles', 'mammals', 'wacky', 'combos', 'tepig', 'classics'].map(
             (category, idx) => {
               return (
                 <label key={idx}>
