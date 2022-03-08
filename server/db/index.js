@@ -2,7 +2,6 @@ const db = require('./db');
 const User = require('./models/User');
 const Pot = require('./models/Pot');
 const Payment = require('./models/Payment');
-// const Cart = require('./models/Cart')
 const cartPot = require('./models/Cart')
 const Cart = db.define('cart', { })
 
@@ -26,7 +25,7 @@ module.exports = {
     User,
     Pot,
     Payment,
-    Cart
+    cartPot
   },
 };
 
