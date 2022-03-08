@@ -290,3 +290,22 @@ form div {
   right: 10px;
   z-index: 20px;
 }
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+}
+
+.cartItemMedia {
+  border: 1px solid black;
+}
+
+.cartItemDesc {
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.cartBtn {
+  margin: 2px;
+}
