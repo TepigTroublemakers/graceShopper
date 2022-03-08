@@ -25,15 +25,14 @@ router.get('/', authenticateCustomerToken, async (req, res, next) => {
   }
 })
 
-// POST /api/cart/:userId
+// POST /api/cart/:potId
 //add pot corresponding to potId to cart belonging to current user, must pass in quantity in body
 router.post('/:potId', authenticateCustomerToken, async (req, res, next) => {
   try{
-    // const {quantity} = req.body.quantity
-    console.log("request body", req.body)
+    const quantity = parseInt(req.body.quantity);
+
     const { potId } = req.params;
     const pot = await Pot.findOne({where: {id: potId}})
-    // console.log("pot to add", pot)
 
     const userCart = await Cart.findOne({
       where: {
@@ -43,20 +42,14 @@ router.post('/:potId', authenticateCustomerToken, async (req, res, next) => {
         model: Pot,
       }
     })
-    // console.log("usercart", userCart.pots)
-    // console.log("price type:", typeof(Number(pot.price)), Number(pot.price))
-    // console.log("quantity type: ", typeof(parseInt(quantity)), parseInt(quantity))
-    // console.log("pot", pot);
-    const itemTotal = Number(pot.price) * parseInt(quantity);
-    console.log("item total", itemTotal)
+    const itemTotal = Number((Number(pot.price) * quantity).toFixed(2));
+    // console.log("item total", itemTotal)
     await userCart.addPot(pot, {
       through: {
         quantity,
-        // itemTotal
+        itemTotal
       }
     })
-    // console.log("updated db cart", userCart.pots)
-
     res.json(userCart)
 
   }catch(err){

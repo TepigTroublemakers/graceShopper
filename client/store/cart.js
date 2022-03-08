@@ -22,6 +22,7 @@ const addPot = (cart) => {
 export const getCartFromDB = () => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem(TOKEN)
       const { data: cart } = await axios.get(`/api/cart/`, {
         headers: {
           authorization: token
@@ -39,10 +40,13 @@ export const addToDbCart = (potId, quantity) => {
     try {
       const token = window.localStorage.getItem(TOKEN)
       if(token){
-        const { data: cart } = await axios.post(`/api/cart/${potId}`, quantity, {
-        headers: {
-          authorization: token
-        }
+        const { data: cart } = await axios.post(`/api/cart/${potId}`,
+        {quantity: quantity},
+        {
+          headers: {
+            authorization: token,
+            'Content-Type': 'application/json'
+          }
         })
         console.log(cart);
         dispatch(addPot(cart))
