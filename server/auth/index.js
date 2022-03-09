@@ -24,7 +24,8 @@ router.post('/signup', async (req, res, next) => {
       password,
       email,
     });
-    user.setCart(await Cart.create({}));
+    const carts = await Cart.create({});
+    carts.setUser(user);
     res.send({ token: await user.generateToken() });
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {

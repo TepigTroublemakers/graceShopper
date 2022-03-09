@@ -50,7 +50,7 @@ const Navbar = () => {
             <img src="https://i.gyazo.com/e5e5b6ced15f680ef17ddfff7d1cea61.png" />
           </Link>
           <Link id="shopNav" to="/pots?page=1">
-            <img src="https://i.gyazo.com/e41dfa6d4eddb7eebe27c086f390091f.png" />
+            <img src="https://i.gyazo.com/1343f1b5604a4c0d7c26d176d7463487.png" />
           </Link>
           <Link id="cartNav" to="/cart">
             {isLoggedIn ? (
@@ -72,6 +72,7 @@ const Navbar = () => {
                   <div className="dropdown-content">
                     <Link to="/users">Users</Link>
                     <Link to="/edit">Edit</Link>
+                    <Link to="/orders">Orders</Link>
                     <a href="#" onClick={() => dispatch(logout())}>
                       Logout
                     </a>
@@ -83,6 +84,7 @@ const Navbar = () => {
                 <button>{username}</button>
                 <div className="dropdown-content">
                   <Link to="/edit">Edit</Link>
+                  <Link to="orders">Orders</Link>
                   <a href="#" onClick={() => dispatch(logout())}>
                     Logout
                   </a>

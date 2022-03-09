@@ -100,7 +100,7 @@ form div {
 #login {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 10px;
 }
 
 #logout {
@@ -133,7 +133,7 @@ form div {
 
 #cartNav {
   position: absolute;
-  right: 0;
+  right: 10px;
   bottom: 0;
 }
 
@@ -143,7 +143,8 @@ form div {
 }
 
 #shopNav {
-  align-items: center;
+  position: absolute;
+  right: 100px;
 }
 
 #navbar {
@@ -312,6 +313,8 @@ form div {
 
 .cartContainer {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 10px;
   justify-content: space-evenly;
 }
@@ -324,6 +327,28 @@ form div {
 }
 
 #checkout {
+  display: flex;
+  flex-direction: column;
+}
+
+#purchased {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#oldCart {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.oldCart-content {
+  display: flex;
+}
+
+.oldCart-subContent {
   display: flex;
   flex-direction: column;
 }

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Cart, Pot, cartPot },
+  models: { Cart, Pot },
 } = require('../db');
 const authenticateToken = require('./AuthToken');
 module.exports = router;
@@ -11,6 +11,24 @@ router.get('/', authenticateToken, async (req, res, next) => {
     const userCart = await Cart.findOne({
       where: {
         userId: req.user.id,
+        fulfilled: false,
+      },
+      include: {
+        model: Pot,
+      },
+    });
+    res.json(userCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/orders', authenticateToken, async (req, res, next) => {
+  try {
+    const userCart = await Cart.findAll({
+      where: {
+        userId: req.user.id,
+        fulfilled: true,
       },
       include: {
         model: Pot,
@@ -34,6 +52,7 @@ router.post('/:potId', authenticateToken, async (req, res, next) => {
     const userCart = await Cart.findOne({
       where: {
         userId: req.user.id,
+        fulfilled: false,
       },
       include: {
         model: Pot,
@@ -62,6 +81,7 @@ router.put('/', authenticateToken, async (req, res, next) => {
     const userCart = await Cart.findOne({
       where: {
         userId: userId,
+        fulfilled: false,
       },
       include: {
         model: Pot,
@@ -80,12 +100,48 @@ router.put('/', authenticateToken, async (req, res, next) => {
     const updatedCart = await Cart.findOne({
       where: {
         userId: userId,
+        fulfilled: false,
       },
       include: {
         model: Pot,
       },
     });
     res.json(updatedCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/confirm', authenticateToken, async (req, res, next) => {
+  try {
+    const { orderDate } = req.body;
+    const completePurchase = await Cart.findOne({
+      where: {
+        id: req.body.cartId,
+      },
+    });
+    await completePurchase.update({
+      fulfilled: true,
+      orderDate,
+    });
+    res.json();
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/', async (req, res, next) => {
+  try {
+    const item = await Cart.findOrCreate({
+      where: {
+        userId: req.body.userId,
+        fulfilled: false,
+      },
+      include: {
+        model: Pot,
+      },
+    });
+    res.json(item);
   } catch (err) {
     next(err);
   }

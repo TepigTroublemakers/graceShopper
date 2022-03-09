@@ -5,8 +5,6 @@ const TOKEN = 'token';
 
 // Action types
 const GET_CART = 'GET_CART';
-const ADD_POT = 'ADD_POT';
-const DELETE_POT = 'DELETE_POT';
 
 // Action creators
 const getCart = (cart) => {
@@ -27,6 +25,18 @@ export const getCartFromDB = () => {
         },
       });
       dispatch(getCart(cart));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
+export const createCart = (userId) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.post('/api/cart', { userId: userId });
+      dispatch(getCart(data));
     } catch (err) {
       console.error(err);
     }
