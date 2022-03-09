@@ -352,3 +352,8 @@ form div {
   display: flex;
   flex-direction: column;
 }
+
+#noOldCart {
+  display: flex;
+  justify-content: center;
+}
