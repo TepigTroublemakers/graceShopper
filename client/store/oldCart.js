@@ -17,7 +17,7 @@ export const getOldCart = () => {
       });
       dispatch(getCart(data));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 };

@@ -34,8 +34,6 @@ const EditCartQty = () => {
     history.back();
   };
 
-  console.log('Selected Item: ', selectedItem);
-
   return (
     <form onSubmit={handleSubmit}>
       <h3>{selectedItem.description}</h3>

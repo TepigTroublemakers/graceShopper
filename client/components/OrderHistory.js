@@ -16,7 +16,6 @@ const OrderHistory = () => {
         oldCart.map((carts) => {
           carts.pots = carts.pots || [];
           return carts.pots.map((pot, idx) => {
-            console.log(pot);
             return (
               <div className="oldCart-content" key={idx}>
                 <img style={{ width: '100px' }} src={pot.imageUrl} />

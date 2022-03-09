@@ -27,7 +27,7 @@ const CartDb = () => {
     dispatch(deletePot(selPot));
   }
 
-  if (cartData.length < 1) {
+  if (!cartData.length) {
     return (
       <div className="cartContainerEmpty">
         <h2>Shopping Cart</h2>
