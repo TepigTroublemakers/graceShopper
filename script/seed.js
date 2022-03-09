@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Pot, Payment, Cart },
+  models: { User, Pot, Cart },
 } = require('../server/db');
 
 /**
@@ -799,23 +799,19 @@ async function seed() {
   });
 
   const Cart1 = await Cart.create({});
+  const Cart2 = await Cart.create({});
+  const Cart3 = await Cart.create({});
+  const Cart4 = await Cart.create({});
+  const Cart5 = await Cart.create({});
 
   // rob added above ^^
 
-  const Payment1 = await Payment.create({
-    name: 'Test Dummy',
-    cardNumber: 1234567890000000,
-    expirationMonth: 1,
-    expirationYear: 2024,
-    zipcode: 11111,
-  });
+  await Cart1.setUser(Customer1);
+  await Cart2.setUser(Jeffy);
+  await Cart3.setUser(Rob);
+  await Cart4.setUser(Evan);
+  await Cart5.setUser(Ricky);
 
-  await Customer1.setCart(Cart1);
-  await Cart1.addPot(Pot91);
-  await Cart1.addPot(Pot80);
-  await Cart1.addPot(Pot60);
-
-  await Customer1.addPayment(Payment1);
   console.log(`seeded successfully`);
 }
 

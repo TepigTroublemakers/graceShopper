@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Cart, Pot, cartPot },
+  models: { Cart, Pot },
 } = require('../db');
 const authenticateToken = require('./AuthToken');
 module.exports = router;
@@ -11,6 +11,24 @@ router.get('/', authenticateToken, async (req, res, next) => {
     const userCart = await Cart.findOne({
       where: {
         userId: req.user.id,
+        fulfilled: false,
+      },
+      include: {
+        model: Pot,
+      },
+    });
+    res.json(userCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/orders', authenticateToken, async (req, res, next) => {
+  try {
+    const userCart = await Cart.findAll({
+      where: {
+        userId: req.user.id,
+        fulfilled: true,
       },
       include: {
         model: Pot,
@@ -34,10 +52,11 @@ router.post('/:potId', authenticateToken, async (req, res, next) => {
     const userCart = await Cart.findOne({
       where: {
         userId: req.user.id,
+        fulfilled: false,
       },
       include: {
-        model: Pot
-      }
+        model: Pot,
+      },
     });
     const itemTotal = Number((Number(pot.price) * quantity).toFixed(2));
     // console.log("item total", itemTotal)
@@ -53,20 +72,20 @@ router.post('/:potId', authenticateToken, async (req, res, next) => {
   }
 });
 
-// PUT /api/cart/:potId
-router.put('/:potId', authenticateToken, async (req, res, next) => {
+// PUT /api/cart/
+router.put('/', authenticateToken, async (req, res, next) => {
   try {
-    const { potId } = req.params;
-    // console.log(req.user);
+    const potId = req.body[0].id;
     const userId = req.user.id;
 
     const userCart = await Cart.findOne({
       where: {
-        userId,
+        userId: userId,
+        fulfilled: false,
       },
       include: {
         model: Pot,
-      }
+      },
     });
 
     const pot = await Pot.findOne({
@@ -75,10 +94,54 @@ router.put('/:potId', authenticateToken, async (req, res, next) => {
       },
     });
 
-    await userCart.removePot(pot.id)
+    await userCart.removePot(pot);
     await userCart.save();
-    res.json( userCart );
 
+    const updatedCart = await Cart.findOne({
+      where: {
+        userId: userId,
+        fulfilled: false,
+      },
+      include: {
+        model: Pot,
+      },
+    });
+    res.json(updatedCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/confirm', authenticateToken, async (req, res, next) => {
+  try {
+    const { orderDate } = req.body;
+    const completePurchase = await Cart.findOne({
+      where: {
+        id: req.body.cartId,
+      },
+    });
+    await completePurchase.update({
+      fulfilled: true,
+      orderDate,
+    });
+    res.json();
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/', async (req, res, next) => {
+  try {
+    const item = await Cart.findOrCreate({
+      where: {
+        userId: req.body.userId,
+        fulfilled: false,
+      },
+      include: {
+        model: Pot,
+      },
+    });
+    res.json(item);
   } catch (err) {
     next(err);
   }

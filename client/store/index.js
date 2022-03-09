@@ -7,6 +7,7 @@ import pots from './pots';
 import users from './users';
 import singlePot from './singlePot';
 import cart from './cart';
+import oldCart from './oldCart';
 
 import localCart from './localCart';
 
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   users,
   localCart,
   cart,
+  oldCart,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

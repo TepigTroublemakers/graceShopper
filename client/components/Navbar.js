@@ -14,20 +14,32 @@ const Navbar = () => {
     return state.auth;
   });
 
-  const localCart = useSelector((state) => {
-    return state.localCart;
+  const { localCart, cart } = useSelector((state) => {
+    return state;
   });
 
-  function countCart() {
+  const DBcart = cart.pots || [];
+
+  function countLocalCart() {
     if (localCart) {
       let count = 0;
       for (let i = 0; i < localCart.length; i++) {
         count += Number(localCart[i].quantity);
       }
       return count;
-    } else {
-      return 0;
     }
+    return 0;
+  }
+
+  function countDBCart() {
+    if (isLoggedIn) {
+      let count = 0;
+      for (let i = 0; i < DBcart.length; i++) {
+        count += Number(DBcart[i].cartPot.quantity);
+      }
+      return count;
+    }
+    return 0;
   }
 
   return (
@@ -38,10 +50,16 @@ const Navbar = () => {
             <img src="https://i.gyazo.com/e5e5b6ced15f680ef17ddfff7d1cea61.png" />
           </Link>
           <Link id="shopNav" to="/pots?page=1">
-            <img src="https://i.gyazo.com/e41dfa6d4eddb7eebe27c086f390091f.png" />
+            <img src="https://i.gyazo.com/1343f1b5604a4c0d7c26d176d7463487.png" />
           </Link>
           <Link id="cartNav" to="/cart">
-            {countCart() !== 0 ? <div id="countCart">{countCart()}</div> : null}
+            {isLoggedIn ? (
+              countDBCart() !== 0 ? (
+                <div id="countCart">{countDBCart()}</div>
+              ) : null
+            ) : countLocalCart() !== 0 ? (
+              <div id="countCart">{countLocalCart()}</div>
+            ) : null}
             <img src="https://i.gyazo.com/525d1202bf0e698bf40c3fd824e635ef.png" />
           </Link>
         </div>
@@ -54,6 +72,7 @@ const Navbar = () => {
                   <div className="dropdown-content">
                     <Link to="/users">Users</Link>
                     <Link to="/edit">Edit</Link>
+                    <Link to="/orders">Orders</Link>
                     <a href="#" onClick={() => dispatch(logout())}>
                       Logout
                     </a>
@@ -65,6 +84,7 @@ const Navbar = () => {
                 <button>{username}</button>
                 <div className="dropdown-content">
                   <Link to="/edit">Edit</Link>
+                  <Link to="orders">Orders</Link>
                   <a href="#" onClick={() => dispatch(logout())}>
                     Logout
                   </a>

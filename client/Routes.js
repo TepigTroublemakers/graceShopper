@@ -12,6 +12,8 @@ import Cart from './components/Cart';
 import EditAccount from './components/EditAccount';
 import EditCartQty from './components/EditCartQty';
 import Checkout from './components/Checkout';
+import OrderHistory from './components/OrderHistory';
+import Purchased from './components/purchased';
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -36,6 +38,8 @@ const Routes = () => {
           <Route path="/home" component={Home} />
           <Route path="/edit" component={EditAccount} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/orders" component={OrderHistory} />
+          <Route path="/purchased" component={Purchased} />
           <Redirect to="/home" />
         </Switch>
       ) : (
@@ -48,6 +52,7 @@ const Routes = () => {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/purchased" component={Purchased} />
           <Route path="/" component={Home} />
         </Switch>
       )}

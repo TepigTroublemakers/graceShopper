@@ -5,8 +5,6 @@ const TOKEN = 'token';
 
 // Action types
 const GET_CART = 'GET_CART';
-const ADD_POT = 'ADD_POT';
-const DELETE_POT = 'DELETE_POT';
 
 // Action creators
 const getCart = (cart) => {
@@ -15,20 +13,6 @@ const getCart = (cart) => {
     cart,
   };
 };
-
-const addPot = (cart) => {
-  return {
-    type: ADD_POT,
-    cart,
-  };
-};
-
-const _deletePot = (cart) => {
-  return {
-    type: DELETE_POT,
-    cart,
-  }
-}
 
 // Thunk creators
 export const getCartFromDB = () => {
@@ -41,6 +25,18 @@ export const getCartFromDB = () => {
         },
       });
       dispatch(getCart(cart));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
+export const createCart = (userId) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      const { data } = await axios.post('/api/cart', { userId: userId });
+      dispatch(getCart(data));
     } catch (err) {
       console.error(err);
     }
@@ -62,8 +58,7 @@ export const addToDbCart = (potId, quantity) => {
             },
           }
         );
-        console.log(cart);
-        dispatch(addPot(cart));
+        dispatch(getCart(cart));
       }
     } catch (err) {
       console.error(err);
@@ -71,20 +66,23 @@ export const addToDbCart = (potId, quantity) => {
   };
 };
 
-export const deletePot = (potId) => {
+export const deletePot = (pot) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
       if (token) {
-        const { data: deletedPotCart } = await axios.put(`/api/cart/${potId}`);
-        dispatch(_deletePot(deletedPotCart));
+        const { data } = await axios.put('/api/cart', pot, {
+          headers: {
+            authorization: token,
+          },
+        });
+        dispatch(getCart(data));
       }
     } catch (error) {
       console.error('Error in deletePot thunk!!');
     }
   };
 };
-
 
 // Initial state
 const initialState = {};
@@ -93,12 +91,6 @@ const initialState = {};
 const cart = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART: {
-      return action.cart;
-    }
-    case ADD_POT: {
-      return action.cart;
-    }
-    case DELETE_POT: {
       return action.cart;
     }
     default:

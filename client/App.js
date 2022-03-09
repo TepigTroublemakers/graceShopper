@@ -10,7 +10,7 @@ const App = () => {
       <PayPalScriptProvider
         options={{
           'client-id':
-            'AaGHiT6kvUSyBteicuIBmc9nGPhMshi7XgPXBI3SIj98aploed1bK-sNLTGmco8xMfrKuJaG7P9zq5_d',
+            'AcNZT4fSMKw3L_bEAA7RthimRSkhhXmsnkODnc3ubv-4sCi5bHyu6Xrwdhqgr1MTGNbSCfld9mnrVvz2',
         }}
       >
         <Navbar />

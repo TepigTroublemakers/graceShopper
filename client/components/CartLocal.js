@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getLocalCart } from '../store/localCart';
+import Checkout from './Checkout';
 
 const CartLocal = () => {
   const dispatch = useDispatch();
   const [cartData, setCartData] = useState([]);
+  const [checkout, setCheckout] = useState(false);
 
   useEffect(() => {
     if (localStorage.data) {
@@ -42,11 +44,9 @@ const CartLocal = () => {
     setCartData(newCart);
   };
 
-  console.log(cartData);
-
   if (cartData.length < 1) {
     return (
-      <div className="cartContainer">
+      <div className="cartContainerEmpty">
         <h2>Shopping Cart</h2>
         <br />
         <h3>Your PotStop cart is empty.</h3>
@@ -56,9 +56,8 @@ const CartLocal = () => {
   } else {
     return (
       <div className="cartContainer">
-        <h2>Shopping Cart</h2>
-        <br />
         <div>
+          <h2>Shopping Cart</h2>
           {cartData.map((item) => {
             return (
               <div key={item.id} className="cartItem">
@@ -94,9 +93,8 @@ const CartLocal = () => {
         <br />
         <br />
         <div>
-          <h2>Cart Subtotal:</h2>
           <h2>
-            $
+            Cart Subtotal: $
             {cartData
               .reduce((total, item) => {
                 const extPrice = item.price * item.quantity;
@@ -104,6 +102,16 @@ const CartLocal = () => {
               }, 0)
               .toFixed(2)}
           </h2>
+          <div>
+            <button
+              type="button"
+              style={{ width: '200px', height: '50px', fontSize: '20px' }}
+              onClick={() => setCheckout(!checkout)}
+            >
+              Checkout
+            </button>
+            {checkout === true ? <Checkout /> : null}
+          </div>
         </div>
       </div>
     );
