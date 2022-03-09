@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CartLocal from './CartLocal';
 import CartDb from './CartDb';
-import { addToDbCart } from '../store/cart';
+import { addToDbCart, getCartFromDB } from '../store/cart';
 
 const Cart = () => {
   const dispatch = useDispatch();

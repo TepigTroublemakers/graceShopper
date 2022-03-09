@@ -59,7 +59,6 @@ router.post('/:potId', authenticateToken, async (req, res, next) => {
       },
     });
     const itemTotal = Number((Number(pot.price) * quantity).toFixed(2));
-    // console.log("item total", itemTotal)
     await userCart.addPot(pot, {
       through: {
         quantity,

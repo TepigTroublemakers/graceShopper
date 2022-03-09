@@ -15,9 +15,7 @@ const SinglePot = () => {
   const isLoggedIn = useSelector((state) => {
     return !!state.auth.id;
   });
-  const userId = useSelector((state) => {
-    return state.auth.id;
-  });
+
   const [orderQty, setOrderQty] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
   const [userSubmit, setUserSubmit] = useState(false);
@@ -44,7 +42,6 @@ const SinglePot = () => {
   }, [cartData]);
 
   useEffect(() => {
-    //console.log("Dispatching to cart store")
     dispatch(addToDbCart(potId, orderQty));
   }, [userSubmit]);
 
@@ -52,7 +49,6 @@ const SinglePot = () => {
     e.preventDefault();
     //need to check if user is logged in, if not, add to local cart, if so, dispatch thunk creator to add to cart
     if (!isLoggedIn) {
-      //console.log("adding to local cart")
       setCartData([
         ...cartData,
         {
@@ -69,7 +65,6 @@ const SinglePot = () => {
   };
 
   const checkLoggedIn = () => {
-    //console.log("checking login")
     if (isLoggedIn) {
       setUserSubmit(true);
     } else {
