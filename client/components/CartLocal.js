@@ -102,14 +102,15 @@ const CartLocal = () => {
               }, 0)
               .toFixed(2)}
           </h2>
-          <div>
+          <div id="checkout">
             <button
               type="button"
-              style={{ width: '200px', height: '50px', fontSize: '20px' }}
+              style={{ width: '300px', height: '50px', fontSize: '20px' }}
               onClick={() => setCheckout(!checkout)}
             >
               Checkout
             </button>
+            <br />
             {checkout === true ? <Checkout /> : null}
           </div>
         </div>

@@ -12,21 +12,27 @@ const OrderHistory = () => {
 
   return (
     <div id="oldCart">
-      {oldCart.map((carts) => {
-        carts.pots = carts.pots || [];
-        return carts.pots.map((pot, idx) => {
-          console.log(pot);
-          return (
-            <div className="oldCart-content" key={idx}>
-              <img style={{ width: '100px' }} src={pot.imageUrl} />
-              <div className="oldCart-subContent">
-                <h4>{pot.description}</h4>
-                <div>${pot.price}</div>
+      {oldCart.length ? (
+        oldCart.map((carts) => {
+          carts.pots = carts.pots || [];
+          return carts.pots.map((pot, idx) => {
+            console.log(pot);
+            return (
+              <div className="oldCart-content" key={idx}>
+                <img style={{ width: '100px' }} src={pot.imageUrl} />
+                <div className="oldCart-subContent">
+                  <h4>{pot.description}</h4>
+                  <div>${pot.price}</div>
+                </div>
               </div>
-            </div>
-          );
-        });
-      })}
+            );
+          });
+        })
+      ) : (
+        <div id="noOldCart">
+          <h1>No Order History</h1>
+        </div>
+      )}
     </div>
   );
 };
