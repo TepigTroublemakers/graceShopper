@@ -5,7 +5,6 @@ import CartDb from './CartDb';
 import { addToDbCart } from '../store/cart';
 
 const Cart = () => {
-
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector((state) => {
@@ -13,25 +12,20 @@ const Cart = () => {
   });
 
   useEffect(() => {
-    //console.log("Dispatching to cart store")
-    if(localStorage.data){
+    if (localStorage.data) {
       const localCart = JSON.parse(localStorage.getItem('data'));
       localCart.forEach((pot) => {
         dispatch(addToDbCart(pot.id, pot.quantity));
-      })
-      localStorage.clear();
+      });
+      localStorage.removeItem('data');
     }
   }, []);
 
-  if(isLoggedIn){
-    return(
-      <CartDb />
-    )
-  }else{
-    return(
-      <CartLocal />
-    )
+  if (isLoggedIn) {
+    return <CartDb />;
+  } else {
+    return <CartLocal />;
   }
-}
+};
 
-export default Cart
+export default Cart;

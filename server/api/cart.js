@@ -36,8 +36,8 @@ router.post('/:potId', authenticateToken, async (req, res, next) => {
         userId: req.user.id,
       },
       include: {
-        model: Pot
-      }
+        model: Pot,
+      },
     });
     const itemTotal = Number((Number(pot.price) * quantity).toFixed(2));
     // console.log("item total", itemTotal)
@@ -53,20 +53,19 @@ router.post('/:potId', authenticateToken, async (req, res, next) => {
   }
 });
 
-// PUT /api/cart/:potId
-router.put('/:potId', authenticateToken, async (req, res, next) => {
+// PUT /api/cart/
+router.put('/', authenticateToken, async (req, res, next) => {
   try {
-    const { potId } = req.params;
-    // console.log(req.user);
+    const potId = req.body[0].id;
     const userId = req.user.id;
 
     const userCart = await Cart.findOne({
       where: {
-        userId,
+        userId: userId,
       },
       include: {
         model: Pot,
-      }
+      },
     });
 
     const pot = await Pot.findOne({
@@ -75,10 +74,18 @@ router.put('/:potId', authenticateToken, async (req, res, next) => {
       },
     });
 
-    await userCart.removePot(pot.id)
+    await userCart.removePot(pot);
     await userCart.save();
-    res.json( userCart );
 
+    const updatedCart = await Cart.findOne({
+      where: {
+        userId: userId,
+      },
+      include: {
+        model: Pot,
+      },
+    });
+    res.json(updatedCart);
   } catch (err) {
     next(err);
   }

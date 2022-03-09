@@ -1,8 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-// const Cart = db.define('cart', {})
-
 const cartPot = db.define('cartPot', {
   quantity: {
     type: Sequelize.INTEGER,
@@ -19,8 +17,7 @@ const cartPot = db.define('cartPot', {
     validate: {
       notEmpty: true,
     },
-  }
+  },
+});
 
-})
-
-module.exports = cartPot
+module.exports = cartPot;
